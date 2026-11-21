@@ -86,5 +86,5 @@ window.ProductLab = (() => {
     el.append(title, rows, controls, fb);
     draw();
   }
-  return { mount, product };
+  return { mount, product, text };
 })();
