@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>See the Invisible Sign</title>
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+<div class="kicker">Lesson 1</div>
+<h1>See the invisible sign</h1>
+<p class="lede">Your first design problem, solved with a circuit you find yourself.</p>
+
+<div class="goal">
+  <strong>Your goal.</strong> A machine hands you one qubit. It is secretly in one of two states, and you must say which, with certainty, using a single measurement.
+</div>
+
+<h2>A qubit is a unit vector</h2>
+<p>A qubit's state is a column of two numbers called <em>amplitudes</em>. The sum of their squared magnitudes must equal 1.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">[1]</a></sup> Amplitudes can be negative, which is where this lesson's puzzle comes from.</p>
+<div class="math">
+  |0⟩ = <span class="mx"><span>1</span><span>0</span></span>
+  &nbsp; |1⟩ = <span class="mx"><span>0</span><span>1</span></span>
+  &nbsp; |+⟩ = <span class="mx"><span>1/√2</span><span>1/√2</span></span>
+  &nbsp; |−⟩ = <span class="mx"><span>1/√2</span><span>−1/√2</span></span>
+</div>
+<p>Measuring gives 0 or 1. The chance of each is its amplitude's magnitude, squared.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">[1]</a></sup> So |+⟩ and |−⟩ both give a 50/50 coin flip. Measuring directly cannot tell them apart, and those are the two states in your puzzle.</p>
+
+<h2>Check the rule</h2>
+<div id="quiz-basics"></div>
+
+<h2>Gates are matrices</h2>
+<p>A gate changes the state by matrix multiplication: multiply each row by the column, and add. Here is H acting on |0⟩:</p>
+<div class="math">
+  H|0⟩ = <span>1/√2</span> <span class="mx two"><span>1</span><span>1</span><span>1</span><span>−1</span></span>
+  <span class="mx"><span>1</span><span>0</span></span>
+  = <span>1/√2</span> <span class="mx"><span>1·1 + 1·0</span><span>1·1 − 1·0</span></span>
+  = <span class="mx"><span>1/√2</span><span>1/√2</span></span> = |+⟩
+</div>
+<p>You have three gates to work with:</p>
+<div class="gates">
+  <div><strong>X</strong><span class="mx two"><span>0</span><span>1</span><span>1</span><span>0</span></span></div>
+  <div><strong>Z</strong><span class="mx two"><span>1</span><span>0</span><span>0</span><span>−1</span></span></div>
+  <div><strong>H</strong>1/√2 <span class="mx two"><span>1</span><span>1</span><span>1</span><span>−1</span></span></div>
+</div>
+
+<h2>Design it</h2>
+<p>Before you click, predict on paper what each gate does to |+⟩ and |−⟩. Then build a circuit that gives each input its own certain outcome. Gates apply left to right.</p>
+<div class="panel" id="lab"></div>
+
+<section id="prove" hidden>
+  <h2>Now prove it</h2>
+  <p>A circuit that works is good. Knowing <em>why</em> it works is the skill you came for. Compute H|−⟩ by hand:</p>
+  <div class="math">
+    H|−⟩ = <span>1/√2</span> <span class="mx two"><span>1</span><span>1</span><span>1</span><span>−1</span></span>
+    <span class="mx"><span>1/√2</span><span>−1/√2</span></span> = <span class="mx"><span>top</span><span>bottom</span></span>
+  </div>
+  <div class="panel" id="hand"></div>
+</section>
+
+<section id="why" hidden>
+  <h2>Name the move</h2>
+  <div id="quiz-why"></div>
+  <p>This is the core design move you will reuse: <strong>put the answer into a sign, then interfere so it becomes a measurable outcome.</strong></p>
+</section>
+
+<div class="footer">
+  <p><strong>Read next:</strong> <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">Quantum information</a>, from John Watrous's IBM course. It is the primary source for this lesson.</p>
+  <p><strong>Keep:</strong> <a href="../reference/one-qubit.html">One-qubit reference sheet</a>. Try the puzzle first, because the sheet contains the answer.</p>
+  <p><strong>Stuck or curious?</strong> Ask me anything in the chat. I'm your teacher here, and "why does that work?" is always a good question.</p>
+</div>
+</main>
+<script src="../assets/quiz.js"></script>
+<script src="../assets/qubit-lab.js"></script>
+<script>
+Quiz.choice(document.getElementById("quiz-basics"), [
+  { prompt: "A qubit has amplitudes (0.6, 0.8). What is the probability of measuring 1?",
+    options: ["0.36", "0.64", "0.60", "0.80"], answer: 1,
+    why: "Square the amplitude for outcome 1: 0.8² = 0.64." },
+  { prompt: "A qubit has amplitudes (1/√2, −1/√2). What is the probability of measuring 0?",
+    options: ["0.00", "0.25", "1.00", "0.50"], answer: 3,
+    why: "(1/√2)² = 1/2. The minus sign on the other amplitude does not change this." },
+  { prompt: "Which of these is a valid qubit state?",
+    options: ["(0.6, −0.8)", "(0.6, +0.4)", "(0.5, −0.5)", "(0.8, +0.8)"], answer: 0,
+    why: "0.36 + 0.64 = 1. The squares must sum to 1, not the amplitudes themselves." },
+]);
+QubitLab.mount(document.getElementById("lab"), {
+  gates: ["X", "Z", "H"], maxGates: 4,
+  inputs: [{ label: "|+⟩", state: "plus" }, { label: "|−⟩", state: "minus" }],
+  hint: "You want one output with a 0 on top and the other with a 0 on the bottom. Which matrix adds and subtracts the two amplitudes?",
+  onSolve: () => { document.getElementById("prove").hidden = false; },
+});
+Quiz.numeric(document.getElementById("hand"), {
+  fields: [{ label: "top", answer: 0 }, { label: "bottom", answer: 1 }],
+  success: "Right. Top: ½ − ½ = 0, so the amplitudes cancel. Bottom: ½ + ½ = 1, so they reinforce.",
+  retry: "Not yet. Top row: (1/√2)(1/√2) + (1/√2)(−1/√2). Bottom row: (1/√2)(1/√2) − (1/√2)(−1/√2).",
+  onSolve: () => { document.getElementById("why").hidden = false; },
+});
+Quiz.choice(document.getElementById("quiz-why"), [
+  { prompt: "Why could H reveal a difference that direct measurement could not?",
+    options: ["It cloned the qubit, then compared both", "It measured the hidden signs in private", "Signs made amplitudes add or cancel out", "It pushed the full probability past one"], answer: 2,
+    why: "Exactly. This is interference: the sign decides which amplitudes cancel and which reinforce." },
+]);
+</script>
+</body>
+</html>
