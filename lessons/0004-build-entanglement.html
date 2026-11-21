@@ -8,7 +8,7 @@
 </head>
 <body>
 <main>
-<div class="kicker">Lesson 3</div>
+<div class="kicker">Lesson 4</div>
 <h1>Build entanglement</h1>
 <p class="lede">Design the circuit that creates the state you proved could not be split.</p>
 
@@ -20,7 +20,7 @@
 <div id="quiz-warmup"></div>
 
 <h2>Why one-qubit gates are not enough</h2>
-<p>|00⟩ is a product state: |0⟩ ⊗ |0⟩. A gate on A changes only A's factor, and a gate on B changes only B's factor.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">[1]</a></sup> For example, X on A gives |1⟩ ⊗ |0⟩ = |10⟩. However many of these you apply, you still have one factor per qubit, so the result is still a product state. You need a gate that makes one qubit's outcome depend on the other's.</p>
+<p>You can now apply a gate to one qubit of any state using the <a href="0003-one-gate-four-amplitudes.html">pair rule</a>. But |00⟩ is a product state, |0⟩ ⊗ |0⟩, and on a product state the pair rule has a simple effect: it changes only that qubit's factor.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">[1]</a></sup> For example, X on A gives |1⟩ ⊗ |0⟩ = |10⟩. However many of these you apply, you still have one factor per qubit, so starting from |00⟩ you can never reach an entangled state. You need a gate that makes one qubit's outcome depend on the other's.</p>
 
 <h2>A gate that acts on both</h2>
 <p><span class="tag">Definition</span> The <em>controlled-NOT</em> gate, or CNOT, flips B when A is 1 and does nothing when A is 0.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">[1]</a></sup> A is the <em>control</em> (●) and B is the <em>target</em> (⊕). In the 00, 01, 10, 11 ordering, that means it swaps the last two amplitudes:</p>
@@ -46,7 +46,7 @@
 
 <div class="footer">
   <p><strong>Read next:</strong> <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">Quantum information for multiple systems</a>, from John Watrous's IBM course, especially its sections on unitary operations and Bell states. It calls CNOT by another common name, CX.</p>
-  <p><strong>Keep:</strong> <a href="../reference/two-qubits.html">Two-qubit reference sheet</a>, which contains answers. <strong>Previous:</strong> <a href="0002-two-qubits-four-amplitudes.html">Lesson 2</a>.</p>
+  <p><strong>Keep:</strong> <a href="../reference/two-qubits.html">Two-qubit reference sheet</a>, which contains answers. <strong>Previous:</strong> <a href="0003-one-gate-four-amplitudes.html">Lesson 3</a>.</p>
   <p><strong>Stuck or curious?</strong> Ask me anything in the chat. I'm your teacher here, and "what is physically happening?" is always a good question.</p>
 </div>
 </main>

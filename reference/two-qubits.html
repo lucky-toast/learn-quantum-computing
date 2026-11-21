@@ -33,6 +33,15 @@
 <p>A <strong>product state</strong> can be written as a tensor product of one state per qubit. An <strong>entangled state</strong> cannot.</p>
 <p>(1/√2, 0, 0, 1/√2) is entangled: a·c ≠ 0 and b·d ≠ 0 force a ≠ 0 and d ≠ 0, so a·d ≠ 0, but the target needs a·d = 0.</p>
 
+<h2>One-qubit gate: the pair rule</h2>
+<p><strong>Gate on A:</strong> apply it to pairs (00, 10) and (01, 11). <strong>Gate on B:</strong> apply it to pairs (00, 01) and (10, 11). Put each result back in the same positions. This works on entangled states too.</p>
+<table>
+  <tr><th>Gate</th><th>Turns a pair (x, y) into</th></tr>
+  <tr><td>X</td><td>(y, x)</td></tr>
+  <tr><td>Z</td><td>(x, −y)</td></tr>
+  <tr><td>H</td><td>((x + y)/√2, (x − y)/√2)</td></tr>
+</table>
+
 <h2>CNOT</h2>
 <p>A is the control and B is the target. CNOT flips B when A is 1, which swaps the last two amplitudes: (p, q, s, t) → (p, q, t, s). Applying it twice undoes it.</p>
 
@@ -48,7 +57,7 @@
 <p><strong>Start from the target and undo the last gate.</strong> Ask what state must exist just before it.</p>
 
 <div class="footer">
-  From <a href="../lessons/0002-two-qubits-four-amplitudes.html">Lesson 2</a> and <a href="../lessons/0003-build-entanglement.html">Lesson 3</a>. Source: <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">Watrous, Quantum information for multiple systems</a>.
+  From <a href="../lessons/0002-two-qubits-four-amplitudes.html">Lesson 2</a>, <a href="../lessons/0003-one-gate-four-amplitudes.html">Lesson 3</a>, and <a href="../lessons/0004-build-entanglement.html">Lesson 4</a>. Source: <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">Watrous, Quantum information for multiple systems</a>.
 </div>
 </main>
 </body>

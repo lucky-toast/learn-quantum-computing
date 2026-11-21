@@ -18,4 +18,4 @@
 
 ## Planned path
 
-Two-qubit states, two-qubit gates, the diffusion matrix, oracles as reversible computation, a full Grover iteration, then an original design problem.
+Two-qubit states, one-qubit gates on two-qubit states, CNOT, the diffusion matrix, oracles as reversible computation, a full Grover iteration, then an original design problem.

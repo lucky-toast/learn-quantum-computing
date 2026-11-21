@@ -19,7 +19,7 @@ window.ProductLab = (() => {
     if (Math.abs(abs - 1) < 1e-9) return sign + "1";
     if (Math.abs(abs - 0.5) < 1e-9) return sign + "½";
     if (Math.abs(abs - r) < 1e-9) return sign + "1/√2";
-    return sign + abs.toFixed(3);
+    return sign + String(Number(abs.toFixed(3)));
   }
   const vector = (amps) => `(${amps.map(text).join(", ")})`;
 
