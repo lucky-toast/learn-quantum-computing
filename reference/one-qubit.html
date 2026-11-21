@@ -14,13 +14,28 @@
 <h2>State and measurement</h2>
 <div class="math">|ψ⟩ = <span class="mx"><span>a</span><span>b</span></span> &nbsp; with |a|² + |b|² = 1 &nbsp; P(0) = |a|², P(1) = |b|²</div>
 
-<h2>Named states</h2>
+<h2>Reading the | ⟩ notation</h2>
+<p><strong>|name⟩ is a label for a column of amplitudes.</strong> The bar and angle bracket mark it as a quantum state, called a <em>ket</em>. The top entry is the amplitude for measuring 0, and the bottom entry is the amplitude for measuring 1.</p>
+<table>
+  <tr><th>State</th><th>Column</th><th>What it means</th><th>Measuring gives</th></tr>
+  <tr><td>|0⟩</td><td><span class="mx"><span>1</span><span>0</span></span></td><td>Definitely 0</td><td>0 every time</td></tr>
+  <tr><td>|1⟩</td><td><span class="mx"><span>0</span><span>1</span></span></td><td>Definitely 1</td><td>1 every time</td></tr>
+  <tr><td>|+⟩</td><td><span class="mx"><span>1/√2</span><span>1/√2</span></span></td><td>Equal parts, same sign. H turns it into |0⟩</td><td>50/50</td></tr>
+  <tr><td>|−⟩</td><td><span class="mx"><span>1/√2</span><span>−1/√2</span></span></td><td>Equal parts, opposite signs. H turns it into |1⟩</td><td>50/50</td></tr>
+  <tr><td>|+i⟩</td><td><span class="mx"><span>1/√2</span><span>i/√2</span></span></td><td>Equal parts, bottom multiplied by i. S turns it into |−⟩</td><td>50/50</td></tr>
+  <tr><td>|−i⟩</td><td><span class="mx"><span>1/√2</span><span>−i/√2</span></span></td><td>Equal parts, bottom multiplied by −i. S turns it into |+⟩</td><td>50/50</td></tr>
+</table>
+
+<h2>Extending to more qubits</h2>
+<p><strong>Each symbol inside the ket is one qubit, read left to right.</strong> So |01⟩ means qubit A is |0⟩ and qubit B is |1⟩. Combine them with the tensor product:</p>
 <div class="math">
-  |0⟩ = <span class="mx"><span>1</span><span>0</span></span>
-  &nbsp; |1⟩ = <span class="mx"><span>0</span><span>1</span></span>
-  &nbsp; |+⟩ = <span class="mx"><span>1/√2</span><span>1/√2</span></span>
-  &nbsp; |−⟩ = <span class="mx"><span>1/√2</span><span>−1/√2</span></span>
+  |01⟩ = |0⟩ ⊗ |1⟩ =
+  <span class="mx"><span>1</span><span>0</span></span> ⊗ <span class="mx"><span>0</span><span>1</span></span> =
+  <span class="mx"><span>1·0</span><span>1·1</span><span>0·0</span><span>0·1</span></span> =
+  <span class="mx"><span>0</span><span>1</span><span>0</span><span>0</span></span>
+  <span class="mx"><span>← 00</span><span>← 01</span><span>← 10</span><span>← 11</span></span>
 </div>
+<p>The 1 lands in the "01" position. The same pattern covers any label: |+0⟩ = |+⟩ ⊗ |0⟩ = (1/√2, 0, 1/√2, 0), and |101⟩ is a column of 8 amplitudes with a 1 in the "101" position.</p>
 
 <h2>Gates</h2>
 <table>
