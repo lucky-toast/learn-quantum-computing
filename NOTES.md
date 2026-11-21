@@ -15,6 +15,8 @@
 - Correct misunderstandings explicitly, including tutor mistakes.
 - Check conceptual understanding, not just arithmetic.
 - Wants the physical meaning of the math.
+- Every lesson includes the in-page reference panel (`assets/reference-drawer.js`), so the learner never has to switch tabs. Tag answers in reference sheets with `data-after-lesson` so the panel cannot spoil the current lesson.
+- State plainly what each exercise gives and what it asks for.
 
 ## Planned path
 

@@ -66,8 +66,19 @@ input { width: 86px; background: var(--bg); border: 1px solid var(--rule); borde
 table { width: 100%; border-collapse: collapse; font-size: .95rem; }
 th, td { text-align: left; border-bottom: 1px solid var(--rule); padding: 6px 4px; vertical-align: top; }
 th { font-weight: 400; color: var(--muted); }
+.ref-toggle { position: fixed; right: 16px; bottom: 16px; z-index: 20; background: var(--accent); border-color: var(--accent); color: var(--bg); box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+.ref-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 30; display: flex; flex-direction: column; width: min(480px, 100vw); background: var(--bg); border-left: 1px solid var(--rule); box-shadow: -3px 0 14px rgba(0,0,0,.14); }
+.ref-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--rule); font-size: .88rem; }
+.ref-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.ref-drawer iframe { flex: 1; width: 100%; border: 0; background: var(--bg); }
+.embedded body { font-size: 16px; }
+.embedded main { padding: 16px; }
+.embedded h1 { font-size: 1.5rem; }
+.embedded h2 { font-size: 1.15rem; margin-top: 1.4rem; }
+.embedded .kicker, .embedded .footer { display: none; }
+@media (min-width: 1040px) { body.ref-open { padding-right: 480px; } }
 @media (max-width: 520px) { body { font-size: 17px; } main { padding-top: 30px; } h1 { font-size: 1.8rem; } }
 @media print {
   :root { --bg: #fff; --ink: #000; --panel: #fff; }
-  main { max-width: none; padding: 0; } a { color: inherit; } button { display: none; }
+  main { max-width: none; padding: 0; } a { color: inherit; } button, .ref-drawer { display: none !important; }
 }
