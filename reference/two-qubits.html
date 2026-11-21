@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two-Qubit Reference</title>
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+<div class="kicker">Reference</div>
+<h1>Two qubits</h1>
+
+<h2>State</h2>
+<p>Four amplitudes, ordered 00, 01, 10, 11. The left digit is qubit A. Squared magnitudes sum to 1.</p>
+
+<h2>Tensor product</h2>
+<div class="math">
+  <span class="mx"><span>a</span><span>b</span></span> ⊗ <span class="mx"><span>c</span><span>d</span></span> =
+  <span class="mx"><span>a·c</span><span>a·d</span><span>b·c</span><span>b·d</span></span>
+</div>
+
+<h2>Examples</h2>
+<table>
+  <tr><th>Pair</th><th>Amplitudes (00, 01, 10, 11)</th></tr>
+  <tr><td>|1⟩ ⊗ |0⟩ = |10⟩</td><td>(0, 0, 1, 0)</td></tr>
+  <tr><td>|+⟩ ⊗ |−⟩</td><td>(½, −½, ½, −½)</td></tr>
+  <tr><td>|−⟩ ⊗ |+⟩</td><td>(½, ½, −½, −½)</td></tr>
+  <tr><td>|−⟩ ⊗ |1⟩</td><td>(0, 1/√2, 0, −1/√2)</td></tr>
+</table>
+
+<h2>Product or entangled</h2>
+<p>A <strong>product state</strong> can be written as a tensor product of one state per qubit. An <strong>entangled state</strong> cannot.</p>
+<p>(1/√2, 0, 0, 1/√2) is entangled: a·c ≠ 0 and b·d ≠ 0 force a ≠ 0 and d ≠ 0, so a·d ≠ 0, but the target needs a·d = 0.</p>
+
+<div class="footer">
+  From <a href="../lessons/0002-two-qubits-four-amplitudes.html">Lesson 2</a>. Source: <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">Watrous, Quantum information for multiple systems</a>.
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two Qubits, Four Amplitudes</title>
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+<div class="kicker">Lesson 2</div>
+<h1>Two qubits, four amplitudes</h1>
+<p class="lede">Derive the rule for combining qubits, then find a state that breaks it.</p>
+
+<div class="goal">
+  <strong>Your goal.</strong> Given a list of four amplitudes, work out which state each of two separate qubits must be in, or prove that no such pair exists.
+</div>
+
+<h2>Warm-up from last time</h2>
+<div id="quiz-warmup"></div>
+
+<h2>Four outcomes, four amplitudes</h2>
+<p>Measuring two qubits gives one of four results: 00, 01, 10, or 11. The left digit belongs to qubit A and the right digit to qubit B. A two-qubit state is a column of four amplitudes, one per result, in that order.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">[1]</a></sup> The squared magnitudes still sum to 1.</p>
+<p><span class="tag">Postulate</span> That a joint system is described this way is a rule of quantum theory. It is not something we derive from the math.</p>
+
+<h2>The combining rule</h2>
+<p><span class="tag">Definition</span> If A and B are independent, each of the four amplitudes is the product of one amplitude from A and one from B.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">[1]</a></sup> This operation is the <em>tensor product</em>, written ⊗:</p>
+<div class="math">
+  <span class="mx"><span>a</span><span>b</span></span> ⊗ <span class="mx"><span>c</span><span>d</span></span> =
+  <span class="mx"><span>a·c</span><span>a·d</span><span>b·c</span><span>b·d</span></span>
+  <span class="mx"><span>← 00</span><span>← 01</span><span>← 10</span><span>← 11</span></span>
+</div>
+<p>Read it like ordinary independent probability: the amplitude for "A gives 1, B gives 0" is A's amplitude for 1 times B's amplitude for 0. For example, |1⟩ ⊗ |0⟩ has a = 0, b = 1, c = 1, d = 0:</p>
+<div class="math">
+  <span class="mx"><span>0</span><span>1</span></span> ⊗ <span class="mx"><span>1</span><span>0</span></span> =
+  <span class="mx"><span>0</span><span>0</span><span>1</span><span>0</span></span> = |10⟩
+</div>
+<p>So |10⟩ is just shorthand for the column with a 1 in the "10" position.</p>
+
+<h2>Derive one</h2>
+<p>Compute |+⟩ ⊗ |−⟩, with A = (1/√2, 1/√2) and B = (1/√2, −1/√2). Enter decimals.</p>
+<div class="panel" id="hand"></div>
+
+<section id="design" hidden>
+  <h2>Work backward</h2>
+  <p>Now reverse the rule, which is closer to design. Find the qubit states that produce each target. If you believe no pair can, say so.</p>
+  <div class="panel" id="lab"></div>
+</section>
+
+<section id="proof" hidden>
+  <h2>Prove it</h2>
+  <p>Trying 16 pairs is not a proof, because a qubit can be in infinitely many states. Suppose (a, b) ⊗ (c, d) equals (1/√2, 0, 0, 1/√2). Then a·c ≠ 0, b·d ≠ 0, and a·d = 0.</p>
+  <div id="quiz-proof"></div>
+  <p>A state that cannot be split into separate qubit states is called <strong>entangled</strong>.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">[1]</a></sup> You just proved one exists. Neither qubit has a state of its own here, so the four amplitudes describe only the pair.</p>
+</section>
+
+<div class="footer">
+  <p><strong>Read next:</strong> <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">Quantum information for multiple systems</a>, from John Watrous's IBM course. It is the primary source for this lesson.</p>
+  <p><strong>Keep:</strong> <a href="../reference/two-qubits.html">Two-qubit reference sheet</a>, which contains answers, and the <a href="../reference/one-qubit.html">one-qubit sheet</a>. <strong>Previous:</strong> <a href="0001-see-the-invisible-sign.html">Lesson 1</a>.</p>
+  <p><strong>Stuck or curious?</strong> Ask me anything in the chat. I'm your teacher here, and "what does this physically mean?" is always a good question.</p>
+</div>
+</main>
+<script src="../assets/quiz.js"></script>
+<script src="../assets/qubit-lab.js"></script>
+<script src="../assets/product-lab.js"></script>
+<script>
+const r = Math.SQRT1_2;
+Quiz.choice(document.getElementById("quiz-warmup"), [
+  { prompt: "In your S then H circuit, what job did S do before H?",
+    options: ["S reads out the ±i factors early", "S doubled the ±i factors in size", "S wiped out the ±i factors fully", "S turned ±i factors into ± signs"], answer: 3,
+    why: "Right. S multiplies the bottom amplitude by i, so ±i becomes ∓1. H can then make the amplitudes add or cancel." },
+]);
+Quiz.numeric(document.getElementById("hand"), {
+  fields: [{ label: "00", answer: 0.5 }, { label: "01", answer: -0.5 }, { label: "10", answer: 0.5 }, { label: "11", answer: -0.5 }],
+  success: "Right. Each entry is (1/√2)(±1/√2) = ±½, and the squares sum to 1.",
+  retry: "Not yet. Use a·c, a·d, b·c, b·d in that order. Note that (1/√2)(1/√2) = 0.5.",
+  onSolve: () => { document.getElementById("design").hidden = false; },
+});
+ProductLab.mount(document.getElementById("lab"), {
+  targets: [
+    { amps: [0.5, 0.5, -0.5, -0.5] },
+    { amps: [0, r, 0, -r] },
+    { amps: [r, 0, 0, r], impossible: true },
+  ],
+  hint: "Group the target as (first two entries) and (last two entries). The first pair is a times B's state, and the second pair is b times B's state.",
+  onSolve: () => { document.getElementById("proof").hidden = false; },
+});
+Quiz.choice(document.getElementById("quiz-proof"), [
+  { prompt: "Which step produces the contradiction?",
+    options: ["a and d are nonzero, so bc is nonzero", "b and d are nonzero, so ac is nonzero", "a and d are nonzero, so ad is nonzero", "b and c are nonzero, so ad is nonzero"], answer: 2,
+    why: "Yes. a·c ≠ 0 forces a ≠ 0, and b·d ≠ 0 forces d ≠ 0. Then a·d cannot be 0, which contradicts the target." },
+]);
+</script>
+</body>
+</html>
