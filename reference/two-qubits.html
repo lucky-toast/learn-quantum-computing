@@ -44,6 +44,14 @@
 
 <h2>CNOT</h2>
 <p>A is the control and B is the target. CNOT flips B when A is 1, which swaps the last two amplitudes: (p, q, s, t) → (p, q, t, s). Applying it twice undoes it.</p>
+<p>To read any controlled flip, check the control digit in each label. If it matches the condition, flip the other digit, and the amplitude moves with its label.</p>
+<table>
+  <tr><th>Gate</th><th>Label map</th><th>(p, q, s, t) becomes</th></tr>
+  <tr><td>Flip B when A is 1 (CNOT)</td><td>10 ↔ 11</td><td>(p, q, t, s)</td></tr>
+  <tr><td>Flip B when A is 0</td><td>00 ↔ 01</td><td>(q, p, s, t)</td></tr>
+  <tr><td>Flip A when B is 1</td><td>01 ↔ 11</td><td>(p, t, s, q)</td></tr>
+  <tr><td>Flip A when B is 0</td><td>00 ↔ 10</td><td>(s, q, p, t)</td></tr>
+</table>
 
 <section data-after-lesson="4">
 <h2>Entangling circuits from |00⟩</h2>
@@ -51,11 +59,13 @@
   <tr><th>Target</th><th>One circuit</th></tr>
   <tr><td>(1/√2, 0, 0, 1/√2)</td><td>H on A, CNOT</td></tr>
   <tr><td>(0, 1/√2, 1/√2, 0)</td><td>X on B, H on A, CNOT</td></tr>
-  <tr><td>(1/√2, 0, 0, −1/√2)</td><td>H on A, CNOT, Z on A</td></tr>
+  <tr><td>(1/√2, 0, 0, −1/√2)</td><td>H on A, Z on A, CNOT (or H on A, CNOT, Z on A)</td></tr>
 </table>
 
 <h2>Design move</h2>
-<p><strong>Start from the target and undo the last gate.</strong> Ask what state must exist just before it.</p>
+<p><strong>Start from the target and undo the last gate.</strong> Ask what state must exist just before it, and repeat until you reach the start.</p>
+<p><strong>Read the pattern.</strong> Nonzero entries on 01 and 11 share B = 1 and differ in A, so they form one of A's pairs.</p>
+<p><strong>Rule out dead ends.</strong> A one-qubit gate cannot turn an all-zero pair into a nonzero pair. If a pair needs amplitude, move amplitude into it first.</p>
 
 </section>
 

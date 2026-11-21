@@ -18,6 +18,10 @@
 - Every lesson includes the in-page reference panel (`assets/reference-drawer.js`), so the learner never has to switch tabs. Tag answers in reference sheets with `data-after-lesson` so the panel cannot spoil the current lesson.
 - State plainly what each exercise gives and what it asks for.
 
+## Where we left off
+
+Lessons 1 through 4 are complete. The learner enjoyed the challenge of working backward. Start the next session with a short retrieval check, then practice undoing every gate back to |00⟩. After that, move to H on both qubits and marking an answer with a sign.
+
 ## Planned path
 
 Two-qubit states, one-qubit gates on two-qubit states, CNOT, the diffusion matrix, oracles as reversible computation, a full Grover iteration, then an original design problem.
