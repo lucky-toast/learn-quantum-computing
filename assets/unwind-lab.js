@@ -1,7 +1,7 @@
 // Reusable backward-design lab. Requires product-lab.js and two-qubit-lab.js.
 // The learner undoes one gate at a time, predicts each new state, and reaches |00⟩.
 // All gates offered must be their own inverse.
-// UnwindLab.mount(el, {targets: [{amps}], gates, maxSteps, hint, onSolve})
+// UnwindLab.mount(el, {targets: [{amps}], gates, hint, onSolve})
 window.UnwindLab = (() => {
   const make = (tag, className, text) => {
     const node = document.createElement(tag);
@@ -41,7 +41,6 @@ window.UnwindLab = (() => {
     let steps = [];
     let pending = null;
     let solved = false;
-    const max = cfg.maxSteps || 6;
     const title = make("p");
     const trail = make("ol", "trail");
     trail.setAttribute("aria-label", "States reached while undoing gates");
@@ -97,7 +96,6 @@ window.UnwindLab = (() => {
       pending = null;
       say("", "");
       if (isStart(current())) finish();
-      else if (steps.length >= max) say("bad", "That is the step limit. Step back or restart, and look for a gate that creates more zeros.");
       draw();
     }
     function finish() {
@@ -112,9 +110,8 @@ window.UnwindLab = (() => {
       title.textContent = `Target ${index + 1} of ${cfg.targets.length}: ${vector(cfg.targets[index].amps)}`;
       const start = make("li", "", `Target: ${vector(cfg.targets[index].amps)}`);
       trail.replaceChildren(start, ...steps.map((s) => make("li", "", `Undo ${s.gate}: ${vector(s.state)}`)));
-      const full = steps.length >= max;
       gateButtons.forEach((b) => {
-        b.disabled = solved || full || Boolean(pending);
+        b.disabled = solved || Boolean(pending);
         b.setAttribute("aria-pressed", String(Boolean(pending) && b.textContent === pending.gate));
       });
       predict.replaceChildren();
