@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Undo Every Gate</title>
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+<div class="kicker">Lesson 5</div>
+<h1>Undo every gate</h1>
+<p class="lede">Find a circuit by walking from the answer all the way back to the start.</p>
+
+<div class="goal">
+  <strong>Your goal.</strong> You are given a target state. Undo one gate at a time until you reach |00⟩, then read off the circuit that builds the target.
+</div>
+
+<h2>From memory</h2>
+<p>Try these without opening the Reference panel.</p>
+<div id="quiz-warmup"></div>
+
+<h2>Why undoing is always possible</h2>
+<p><span class="tag">Postulate</span> Quantum operations on a state are described by <em>unitary</em> matrices.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">[1]</a></sup></p>
+<p><span class="tag">Math fact</span> Every unitary matrix U has an inverse, written U⁻¹, with U⁻¹U = I. Here I is the identity matrix, which leaves every state unchanged.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">[1]</a></sup> So no gate in a circuit destroys the information needed to step back.</p>
+<p>You already know CNOT is its own inverse. Check H yourself. Multiply H by H and enter the four entries of the result.</p>
+<div class="math">
+  <span>1/√2</span> <span class="mx two"><span>1</span><span>1</span><span>1</span><span>−1</span></span>
+  <span>·</span>
+  <span>1/√2</span> <span class="mx two"><span>1</span><span>1</span><span>1</span><span>−1</span></span>
+  <span>=</span>
+  <span class="mx two"><span>top left</span><span>top right</span><span>bottom left</span><span>bottom right</span></span>
+</div>
+<div class="panel" id="hand"></div>
+
+<section id="order" hidden>
+  <h2>Undo in reverse order</h2>
+  <p>Suppose a circuit applies G₁, then G₂, then G₃. Each new gate multiplies on the left, so the target is:</p>
+  <div class="math">|target⟩ = G₃ G₂ G₁ |00⟩</div>
+  <p>G₃ sits next to the target, so it is the only gate you can remove first. Multiply both sides by G₃⁻¹, and G₃⁻¹G₃ = I disappears:</p>
+  <div class="math">G₃⁻¹ |target⟩ = G₂ G₁ |00⟩</div>
+  <p>Repeat for G₂ and G₁. X, Z, H, and CNOT are each their own inverse, so here <strong>undoing a gate means applying the same gate again</strong>.</p>
+
+  <h2>Unwind three states</h2>
+  <div class="panel">
+    <p><strong>Given:</strong> a target state. <strong>Asked:</strong> choose a gate to undo, work out the state it leaves, and continue until you reach |00⟩. Use paper for each step. There can be more than one correct path.</p>
+    <div id="lab"></div>
+  </div>
+</section>
+
+<section id="why" hidden>
+  <h2>Check the idea</h2>
+  <div id="quiz-why"></div>
+  <p>This is your new design loop: <strong>undo a gate, simplify the state, repeat.</strong> A good next gate usually creates zeros or reveals a pair you recognize. When you reach |00⟩, the reversed list is your circuit.</p>
+</section>
+
+<div class="footer">
+  <p><strong>Read next:</strong> the “Unitary operations” section of <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">Quantum information</a>, from John Watrous's IBM course. He writes the inverse of a unitary as U†.</p>
+  <p><strong>Need a reminder?</strong> Use the Reference button to open your notes beside this lesson. This lesson's answers stay hidden. <strong>Previous:</strong> <a href="0004-build-entanglement.html">Lesson 4</a>.</p>
+  <p><strong>Stuck or curious?</strong> Ask me anything in the chat. I'm your teacher here, and "why does this step work?" is always a good question.</p>
+</div>
+</main>
+<script src="../assets/quiz.js"></script>
+<script src="../assets/qubit-lab.js"></script>
+<script src="../assets/product-lab.js"></script>
+<script src="../assets/two-qubit-lab.js"></script>
+<script src="../assets/unwind-lab.js"></script>
+<script src="../assets/reference-drawer.js" data-lesson="5" data-sheets="one-qubit:One qubit,two-qubits:Two qubits"></script>
+<script>
+const root = Math.SQRT1_2;
+Quiz.choice(document.getElementById("quiz-warmup"), [
+  { prompt: "To apply a gate to qubit A, which amplitude pairs do you use?",
+    options: ["(00, 01) and (10, 11)", "(00, 11) and (01, 10)", "(00, 10) and (01, 11)", "(00, 10) and (01, 10)"], answer: 2,
+    why: "Right. Each pair has the same B digit and differs only in A." },
+  { prompt: "A target is (0, 1/√2, 1/√2, 0), and its last gate was CNOT. What was the state just before CNOT?",
+    options: ["(0, 1/√2, 0, 1/√2)", "(1/√2, 0, 1/√2, 0)", "(0, 0, 1/√2, 1/√2)", "(1/√2, 1/√2, 0, 0)"], answer: 0,
+    why: "Yes. CNOT undoes itself, so swap the last two entries." },
+]);
+Quiz.numeric(document.getElementById("hand"), {
+  fields: [{ label: "top left", answer: 1 }, { label: "top right", answer: 0 }, { label: "bottom left", answer: 0 }, { label: "bottom right", answer: 1 }],
+  success: "Right. The factors give (1/√2)(1/√2) = ½, and the matrix product is 2I, so H · H = I. H undoes itself.",
+  retry: "Not yet. Multiply the two 1/√2 factors to get ½. Then multiply the integer matrices, and scale each entry by ½.",
+  onSolve: () => { document.getElementById("order").hidden = false; },
+});
+UnwindLab.mount(document.getElementById("lab"), {
+  gates: ["H on A", "H on B", "X on A", "X on B", "Z on A", "Z on B", "CNOT"],
+  maxSteps: 6,
+  targets: [
+    { amps: [0.5, 0.5, 0.5, -0.5] },
+    { amps: [0, root, -root, 0] },
+    { amps: [0.5, -0.5, 0.5, 0.5] },
+  ],
+  hint: "Look for a gate that creates zeros. With four entries of ±½, try H on one qubit. With two nonzero entries, check whether they form one of A's or B's pairs, or whether CNOT would make them do so.",
+  onSolve: () => { document.getElementById("why").hidden = false; },
+});
+Quiz.choice(document.getElementById("quiz-why"), [
+  { prompt: "You reached |00⟩ by undoing X on A, then CNOT, then H on B. Which circuit builds the target from |00⟩?",
+    options: ["X on A, CNOT, H on B", "CNOT, X on A, H on B", "H on B, X on A, CNOT", "H on B, CNOT, X on A"], answer: 3,
+    why: "Right. The last gate you undid is the first gate of the circuit." },
+  { prompt: "S multiplies the bottom amplitude by i. After applying S, what undoes it?",
+    options: ["Apply S one more time", "Apply S three more times", "Apply Z one more time", "Apply X three more times"], answer: 1,
+    why: "Yes. S⁴ multiplies the bottom amplitude by i⁴ = 1, so S³ is the inverse of S. Not every gate is its own inverse." },
+]);
+</script>
+</body>
+</html>

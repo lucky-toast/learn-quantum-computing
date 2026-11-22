@@ -20,7 +20,7 @@
 
 ## Where we left off
 
-Lessons 1 through 4 are complete. The learner enjoyed the challenge of working backward. Start the next session with a short retrieval check, then practice undoing every gate back to |00⟩. After that, move to H on both qubits and marking an answer with a sign.
+Lessons 1 through 4 are complete. The learner enjoyed the challenge of working backward. Lesson 5 (retrieval check, then undoing every gate back to |00⟩) is built but not yet attempted, so ask how it went before writing a learning record. After that, move to H on both qubits and marking an answer with a sign.
 
 ## Planned path
 

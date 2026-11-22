@@ -69,8 +69,20 @@
 
 </section>
 
+<section data-after-lesson="5">
+<h2>Undoing a circuit</h2>
+<p>If |target⟩ = G₃ G₂ G₁ |00⟩, undo G₃ first, then G₂, then G₁. The reversed undo list is the circuit.</p>
+<p>X, Z, H, and CNOT are their own inverses. S is not: S³ undoes S.</p>
+<table>
+  <tr><th>Target</th><th>Undo path</th><th>Circuit from |00⟩</th></tr>
+  <tr><td>(½, ½, ½, −½)</td><td>H on B, CNOT, H on A</td><td>H on A, CNOT, H on B</td></tr>
+  <tr><td>(0, 1/√2, −1/√2, 0)</td><td>CNOT, H on A, X on A, X on B</td><td>X on B, X on A, H on A, CNOT</td></tr>
+  <tr><td>(½, −½, ½, ½)</td><td>H on B, CNOT, H on A, X on B</td><td>X on B, H on A, CNOT, H on B</td></tr>
+</table>
+</section>
+
 <div class="footer">
-  From <a href="../lessons/0002-two-qubits-four-amplitudes.html">Lesson 2</a>, <a href="../lessons/0003-one-gate-four-amplitudes.html">Lesson 3</a>, and <a href="../lessons/0004-build-entanglement.html">Lesson 4</a>. Source: <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">Watrous, Quantum information for multiple systems</a>.
+  From <a href="../lessons/0002-two-qubits-four-amplitudes.html">Lesson 2</a>, <a href="../lessons/0003-one-gate-four-amplitudes.html">Lesson 3</a>, <a href="../lessons/0004-build-entanglement.html">Lesson 4</a>, and <a href="../lessons/0005-undo-every-gate.html">Lesson 5</a>. Source: <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">Watrous, Quantum information for multiple systems</a>.
 </div>
 </main>
 <script src="../assets/reference-filter.js"></script>
