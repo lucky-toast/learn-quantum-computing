@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S as a Quarter Turn</title>
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+<div class="kicker">Side note after Lesson 5</div>
+<h1>S is a quarter turn</h1>
+<p class="lede">Multiplying by i rotates a number 90° in the complex plane. The S gate does exactly that to one amplitude.</p>
+
+<div class="panel" id="dial"></div>
+<p>Each dial is a complex plane. S leaves the top amplitude alone and multiplies the bottom one by i, so the bottom arrow turns while keeping its length. Four quarter turns make a full circle, so <strong>S⁴ = I</strong>.</p>
+
+<h2>Why multiplying by i rotates</h2>
+<p><span class="tag">Definition</span> A complex number x + yi can be drawn as the point (x, y). The horizontal axis is the real part and the vertical axis is the imaginary part. The number i is defined by i² = −1.</p>
+<p>Multiply any number by i and use that definition:</p>
+<div class="math">i(x + yi) = xi + yi² = −y + xi</div>
+<p>So the point (x, y) moves to (−y, x). Drag <em>z</em> below and watch the dashed triangle. It keeps its shape and turns 90° counterclockwise.</p>
+<div class="panel" id="explorer"></div>
+<p>The matrix under the plane is the same move in ordinary linear algebra. It is the standard 90° rotation matrix. Apply it twice and you get −I, a half turn, which is the geometric meaning of <strong>i² = −1</strong>.<sup><a href="https://en.wikipedia.org/wiki/Complex_number">[1]</a></sup></p>
+
+<h2>Every phase is a rotation</h2>
+<p><span class="tag">Math fact</span> When complex numbers multiply, their <strong>lengths multiply and their angles add</strong>.<sup><a href="https://en.wikipedia.org/wiki/Complex_number">[1]</a></sup> A number of length 1 therefore changes only the angle. It is a pure rotation.</p>
+<p>Euler's formula names the number of length 1 at angle θ, measured in radians:<sup><a href="https://en.wikipedia.org/wiki/Euler%27s_formula">[2]</a></sup></p>
+<div class="math">e<sup>iθ</sup> = cos θ + i sin θ</div>
+<p>At θ = π/2, a quarter turn, this gives 0 + 1·i = i. At θ = π, a half turn, it gives −1. So <strong>i and −1 are two stops on the same circle</strong>.</p>
+
+<h2>S belongs to a family of gates</h2>
+<p><span class="tag">Definition</span> A <em>phase gate</em> multiplies the bottom amplitude by e<sup>iθ</sup>.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">[3]</a></sup></p>
+<div class="math">
+  P<sub>θ</sub> = <span class="mx two"><span>1</span><span>0</span><span>0</span><span>e<sup>iθ</sup></span></span>
+  <span class="mx"><span>a</span><span>b</span></span> =
+  <span class="mx"><span>a</span><span>e<sup>iθ</sup>b</span></span>
+</div>
+<div class="pd-scroll" style="overflow-x:auto">
+<table>
+  <tr><th>Gate</th><th>Bottom entry</th><th>Turn</th><th>Uses to return</th><th>Inverse</th></tr>
+  <tr><td>T</td><td>(1 + i)/√2</td><td>45°</td><td>8</td><td>T⁷</td></tr>
+  <tr><td>S</td><td>i</td><td>90°</td><td>4</td><td>S³</td></tr>
+  <tr><td>Z</td><td>−1</td><td>180°</td><td>2</td><td>Z</td></tr>
+</table>
+</div>
+<p>Applying gates adds their turns, so S · S = Z and T · T = S. To undo a turn, finish the circle: three more quarter turns land in the same place as one quarter turn backward, so <strong>S³ = S⁻¹</strong>, the gate with −i in the corner.</p>
+
+<h2>What the turn does physically</h2>
+<p><span class="tag">Postulate</span> Measuring gives each outcome with probability equal to the amplitude's absolute value squared.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">[3]</a></sup> A rotation keeps the length, so <strong>a phase gate cannot change the odds of a direct measurement</strong>. That is why the first bar in the animation stays at 50%.</p>
+<p>The angle shows up when amplitudes combine. Apply H to (1/√2, e<sup>iθ</sup>/√2). The top entry becomes (1 + e<sup>iθ</sup>)/2, an addition of two arrows:</p>
+<div class="math">P(0) = |1 + e<sup>iθ</sup>|² / 4 = (1 + cos θ) / 2</div>
+<p>Arrows pointing the same way reinforce, giving 100%. Opposite arrows cancel, giving 0%. A quarter turn lands halfway, at 50%. This is your Lesson 1 design move in its general form: <strong>store information in an angle, then interfere to make it measurable.</strong></p>
+
+<h2>Check yourself</h2>
+<div id="quiz"></div>
+
+<div class="footer">
+  <p>From a side conversation after <a href="../lessons/0005-undo-every-gate.html">Lesson 5</a>. See also the <a href="one-qubit.html">one-qubit reference</a>.</p>
+  <p>Sources: [1] <a href="https://en.wikipedia.org/wiki/Complex_number">Complex number</a>, Wikipedia. [2] <a href="https://en.wikipedia.org/wiki/Euler%27s_formula">Euler's formula</a>, Wikipedia. [3] <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">Quantum information</a>, John Watrous, IBM Quantum Learning.</p>
+</div>
+</main>
+<script src="../assets/quiz.js"></script>
+<script src="../assets/phase-dial.js"></script>
+<script src="../assets/reference-filter.js"></script>
+<script>
+window.phaseDemo = PhaseDial.mount(document.getElementById("dial"));
+window.phaseExplorer = PhaseDial.explorer(document.getElementById("explorer"));
+Quiz.choice(document.getElementById("quiz"), [
+  { prompt: "What is i · (3 + 2i)?",
+    options: ["3 − 2i", "−2 + 3i", "2 − 3i", "−3 + 2i"], answer: 1,
+    why: "Right. The point (3, 2) moves to (−2, 3)." },
+  { prompt: "T is a 45° turn. After one T, how many more T gates return to the start?",
+    options: ["Three more gates", "Five more gates", "Seven more gates", "Eight more gates"], answer: 2,
+    why: "Yes. One T plus seven more makes 8 × 45° = 360°." },
+  { prompt: "Start in |+⟩, apply S twice, then apply H. What is P(0)?",
+    options: ["0%", "25%", "50%", "100%"], answer: 0,
+    why: "Right. Two quarter turns give θ = 180°, so (1 + cos θ)/2 = 0." },
+]);
+</script>
+</body>
+</html>

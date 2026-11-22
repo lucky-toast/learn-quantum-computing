@@ -10,6 +10,10 @@
   Open PDF of the written course. Use for: offline reading and precise statements.
 - [Essay: _Quantum Computing for the Very Curious_ by Andy Matuschak and Michael Nielsen](https://quantum.country/qcvc)
   Mechanics-first introduction with built-in spaced repetition. Use for: a second explanation and long-term retention of the basics.
+- [Article: _Complex number_ (Wikipedia)](https://en.wikipedia.org/wiki/Complex_number)
+  Polar form and the matrix view of complex numbers. Use for: why multiplication scales and rotates.
+- [Article: _Euler's formula_ (Wikipedia)](https://en.wikipedia.org/wiki/Euler%27s_formula)
+  The link between exponentials and the unit circle. Use for: phase gates written as e^(iθ).
 
 ## Wisdom (Communities)
 

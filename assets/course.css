@@ -64,6 +64,33 @@ input { width: 86px; background: var(--bg); border: 1px solid var(--rule); borde
 .fill { height: 100%; background: var(--bar); }
 .trail { margin: .6rem 0; padding: 10px 12px 10px 38px; background: var(--bg); border: 1px solid var(--rule); border-radius: 5px; font-size: .92rem; }
 .unwind-prompt { margin-bottom: .2rem; font-style: italic; }
+.pd-dials { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.pd-fig { margin: 0; min-width: 0; text-align: center; }
+.pd-fig figcaption { color: var(--muted); font-size: .84rem; line-height: 1.3; }
+.pd-svg { display: block; width: 100%; height: auto; max-width: 320px; margin: 0 auto; background: var(--bg); border: 1px solid var(--rule); border-radius: 5px; }
+.pd-axis { stroke: var(--muted); stroke-width: 1; }
+.pd-grid { stroke: var(--rule); stroke-width: 1; }
+.pd-ring { fill: none; stroke: var(--muted); stroke-width: 1.2; }
+.pd-guide { fill: none; stroke: var(--rule); stroke-width: 1.2; stroke-dasharray: 4 4; }
+.pd-label, .pd-tick, .pd-name { fill: var(--muted); text-anchor: middle; font-size: 13px; }
+.pd-tick { font-size: 10px; }
+.pd-name { fill: var(--ink); font-size: 15px; font-style: italic; }
+.pd-name-hot { fill: var(--accent); }
+.pd-arrow { stroke: var(--ink); stroke-width: 2.4; }
+.pd-head { fill: var(--ink); }
+.pd-arrow.pd-hot { stroke: var(--accent); }
+.pd-head.pd-hot { fill: var(--accent); }
+.pd-arc { fill: none; stroke: var(--bar); stroke-width: 2; }
+.pd-mark { fill: var(--bar); }
+.pd-leg { fill: none; stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 3 3; }
+.pd-leg-hot { stroke: var(--accent); }
+.pd-handle { fill: var(--ink); fill-opacity: .14; stroke: var(--ink); stroke-width: 1.2; cursor: grab; touch-action: none; }
+.pd-handle:focus-visible { outline: none; stroke: var(--accent); stroke-width: 3; }
+.pd-status { min-height: 1.6em; font-style: italic; }
+.pd-table th { width: 44%; }
+.pd-table td { font-variant-numeric: tabular-nums; }
+.pd-prob { grid-template-columns: minmax(0, 11rem) 1fr 46px; }
+.pd-algebra { text-align: center; overflow-wrap: anywhere; }
 .footer { margin-top: 2.6rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: .92rem; color: var(--muted); }
 table { width: 100%; border-collapse: collapse; font-size: .95rem; }
 th, td { text-align: left; border-bottom: 1px solid var(--rule); padding: 6px 4px; vertical-align: top; }

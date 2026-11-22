@@ -24,6 +24,10 @@
 
 Lessons 1 through 5 are complete. The learner enjoys working backward and was surprised that S returns to the start after four applications. Start the next session with a short retrieval check that includes a little matrix multiplication, then move to H on both qubits and marking an answer with a sign.
 
+## Side notes
+
+- `reference/phase-rotation.html`: S as a quarter turn in the complex plane, with animation. The learner asked for it after Lesson 5 and was excited by the connection. Add it to the reference panel in future lessons, and use it when phase returns.
+
 ## Planned path
 
 Two-qubit states, one-qubit gates on two-qubit states, CNOT, the diffusion matrix, oracles as reversible computation, a full Grover iteration, then an original design problem.
