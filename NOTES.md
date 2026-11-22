@@ -16,11 +16,13 @@
 - Check conceptual understanding, not just arithmetic.
 - Wants the physical meaning of the math.
 - Every lesson includes the in-page reference panel (`assets/reference-drawer.js`), so the learner never has to switch tabs. Tag answers in reference sheets with `data-after-lesson` so the panel cannot spoil the current lesson.
-- State plainly what each exercise gives and what it asks for.
+- State plainly what each exercise gives and what it asks for, including any limits. Avoid arbitrary limits that can block a valid solution.
+- Keep chat explanations short. Long breakdowns of optional detail go unread.
+- Enjoys seeing the minimal solution after solving a puzzle. Verify minimality by exhaustive search before claiming it.
 
 ## Where we left off
 
-Lessons 1 through 4 are complete. The learner enjoyed the challenge of working backward. Lesson 5 (retrieval check, then undoing every gate back to |00⟩) is built but not yet attempted, so ask how it went before writing a learning record. After that, move to H on both qubits and marking an answer with a sign.
+Lessons 1 through 5 are complete. The learner enjoys working backward and was surprised that S returns to the start after four applications. Start the next session with a short retrieval check that includes a little matrix multiplication, then move to H on both qubits and marking an answer with a sign.
 
 ## Planned path
 
