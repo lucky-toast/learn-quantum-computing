@@ -4,7 +4,7 @@
 - Refresh linear algebra in context with worked examples, then have the learner do the arithmetic.
 - Tooling path: browser lessons first, Python and Qiskit once the ideas are solid.
 - Hold back famous algorithm names until the learner has attempted the underlying idea.
-- Glossary: not started. Add terms only after the learner demonstrates understanding.
+- Glossary: started in session 6. Add terms only after the learner demonstrates understanding.
 
 ## Learner preferences (from prior study summary)
 
@@ -22,7 +22,7 @@
 
 ## Where we left off
 
-Session 6 ran as chat only (no browser), so it has no lesson file. Starting from the uniform state with one sign flipped, the learner designed H on A, CNOT, H on A, X on A, X on B, which reads out the marked position with certainty (LR 0010). Open question: *why* certainty is possible. Next, teach overlaps (inner products) between the four marked states, then marking a position with a reversible oracle. A future HTML lesson should turn this chat session into practice with retrieval.
+Session 6 ran as chat only (no browser), so it has no lesson file. Starting from the uniform state with one sign flipped, the learner designed H on A, CNOT, H on A, X on A, X on B, which reads out the marked position with certainty (LR 0010). They then explained why certainty is possible, using dot products and orthogonality (LR 0011). Next: marking a position with a reversible oracle instead of a friend. Teach the complex dot product before phase gates return. A future HTML lesson should turn this chat session into practice with retrieval.
 
 ## Side notes
 
