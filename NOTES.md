@@ -22,7 +22,7 @@
 
 ## Where we left off
 
-Lessons 1 through 5 are complete. The learner enjoys working backward and was surprised that S returns to the start after four applications. Start the next session with a short retrieval check that includes a little matrix multiplication, then move to H on both qubits and marking an answer with a sign.
+Session 6 ran as chat only (no browser), so it has no lesson file. Starting from the uniform state with one sign flipped, the learner designed H on A, CNOT, H on A, X on A, X on B, which reads out the marked position with certainty (LR 0010). Open question: *why* certainty is possible. Next, teach overlaps (inner products) between the four marked states, then marking a position with a reversible oracle. A future HTML lesson should turn this chat session into practice with retrieval.
 
 ## Side notes
 
