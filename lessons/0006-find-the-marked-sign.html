@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find the Marked Sign</title>
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+<div class="kicker">Lesson 6</div>
+<h1>Find the marked sign</h1>
+<p class="lede">A friend hides a minus sign on one of four amplitudes. Design one circuit that reads it out with certainty.</p>
+
+<div class="goal">
+  <strong>Your goal.</strong> You solved this in chat. Rebuild it here from memory, then explain with dot products why it can work at all.
+</div>
+
+<h2>From memory</h2>
+<p>Try these without opening the Reference panel.</p>
+<div id="quiz-warmup"></div>
+
+<h2>A hidden mark</h2>
+<p>Start from the uniform state (½, ½, ½, ½). A friend flips the sign of exactly one amplitude. If they mark 11, you get (½, ½, ½, −½). There are four possible marked states, one per position.</p>
+<p><span class="tag">Postulate</span> Measuring gives each outcome with probability equal to its amplitude squared.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">[1]</a></sup></p>
+<div id="quiz-measure"></div>
+
+<section id="attempt" hidden>
+  <h2>The obvious first try</h2>
+  <p><strong>Given:</strong> the 11-marked state (½, ½, ½, −½). <strong>Asked:</strong> apply H on A, then H on B, and enter the four amplitudes. Use paper, one pair at a time. Enter decimals, such as 0.5 or −0.5.</p>
+  <div class="panel" id="hand"></div>
+</section>
+
+<section id="design" hidden>
+  <h2>Design the readout</h2>
+  <div class="panel">
+    <p><strong>Given:</strong> all four marked states, listed below. <strong>Asked:</strong> build one circuit. <em>Run on every input</em> applies it to all four and shows what you would measure. You can use up to 8 gates, which is more than any solution needs.</p>
+    <p class="inputs">00-marked (−½, ½, ½, ½) · 01-marked (½, −½, ½, ½) · 10-marked (½, ½, −½, ½) · 11-marked (½, ½, ½, −½)</p>
+    <div id="lab"></div>
+  </div>
+</section>
+
+<section id="search" hidden>
+  <h2>What an exhaustive search says</h2>
+  <p>I checked every circuit built from these seven gates, ignoring overall sign:</p>
+  <ul>
+    <li>No circuit with fewer than 3 gates tells all four apart.</li>
+    <li>Exactly two 3-gate circuits do: <em>H on A, CNOT, H on A</em> and <em>H on B, CNOT, H on A</em>.</li>
+    <li>Reading out the marked position itself needs 5 gates. No 4-gate circuit does it.</li>
+  </ul>
+
+  <h2>Why it can work</h2>
+  <p>The <strong>dot product</strong> of two lists of numbers multiplies matching entries and adds the results. For example, (1, 2, 3) · (4, 5, 6) = 4 + 10 + 18 = 32. A dot product of 0 means the two states are <strong>orthogonal</strong>. This rule is for real amplitudes. Complex amplitudes need one more step, which comes later.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/introduction">[2]</a></sup></p>
+  <p><strong>Given:</strong> |0⟩ = (1, 0) and |+⟩ = (1/√2, 1/√2), plus the 00-marked and 11-marked states above. <strong>Asked:</strong> compute both dot products. Enter decimals.</p>
+  <div class="panel" id="dots"></div>
+</section>
+
+<section id="why" hidden>
+  <p><span class="tag">Math fact</span> Unitary matrices preserve dot products: (Uv) · (Uw) = v · w.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/introduction">[2]</a></sup> Gates are unitary, so no circuit can change how much two states overlap.</p>
+  <p>Your circuit sends the four marked states to |00⟩, |01⟩, |10⟩ and |11⟩, which are orthogonal. That is only possible because the marked states were already orthogonal. <strong>The circuit does not create the difference. It turns a difference measurement cannot see into one it can.</strong></p>
+  <h2>Check the idea</h2>
+  <div id="quiz-why"></div>
+</section>
+
+<div class="footer">
+  <p><strong>Read next:</strong> the section on inner products and orthonormality in Lesson 3, “Quantum circuits”, of <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/introduction">John Watrous's <em>Basics of Quantum Information</em></a>. He calls the dot product an <em>inner product</em> and includes the complex case.</p>
+  <p><strong>Need a reminder?</strong> Use the Reference button to open your notes beside this lesson. This lesson's answers stay hidden. <strong>Previous:</strong> <a href="0005-undo-every-gate.html">Lesson 5</a>.</p>
+  <p><strong>Stuck or curious?</strong> Ask me anything in the chat. I'm your teacher here, and "why does this step work?" is always a good question.</p>
+</div>
+</main>
+<script src="../assets/quiz.js"></script>
+<script src="../assets/qubit-lab.js"></script>
+<script src="../assets/product-lab.js"></script>
+<script src="../assets/two-qubit-lab.js"></script>
+<script src="../assets/batch-lab.js"></script>
+<script src="../assets/reference-drawer.js" data-lesson="6" data-sheets="one-qubit:One qubit,two-qubits:Two qubits,phase-rotation:Phase"></script>
+<script>
+const show = (id) => { document.getElementById(id).hidden = false; };
+const marked = [0, 1, 2, 3].map((m) => [0, 1, 2, 3].map((i) => (i === m ? -0.5 : 0.5)));
+
+Quiz.choice(document.getElementById("quiz-warmup"), [
+  { prompt: "With Z = [[1, 0], [0, −1]] and X = [[0, 1], [1, 0]], what is Z · X?",
+    options: ["[[0, −1], [1, 0]]", "[[0, 1], [−1, 0]]", "[[1, 0], [0, −1]]", "[[−1, 0], [0, 1]]"], answer: 1,
+    why: "Right. Z keeps X's top row and flips the sign of its bottom row." },
+  { prompt: "Starting from |00⟩, apply H on A, then H on B. What state do you get?",
+    options: ["(1/√2, 0, 1/√2, 0)", "(½, −½, ½, −½)", "(½, ½, ½, ½)", "(½, ½, −½, −½)"], answer: 2,
+    why: "Yes. H on A gives (1/√2, 0, 1/√2, 0), then H on B splits each nonzero entry across B's pair." },
+  { prompt: "Apply Z on A to (½, ½, ½, ½). What state do you get?",
+    options: ["(½, ½, −½, −½)", "(½, −½, ½, −½)", "(−½, −½, ½, ½)", "(½, ½, ½, −½)"], answer: 0,
+    why: "Right. Z on A flips the sign wherever A = 1, which is 10 and 11." },
+]);
+
+Quiz.choice(document.getElementById("quiz-measure"), [
+  { prompt: "You measure the 11-marked state with no gates first. What is the probability of outcome 11?",
+    options: ["Zero, because its sign is negative", "One half, twice any other", "Negative quarter, from its sign", "One quarter, like every outcome"], answer: 3,
+    why: "Right. (−½)² = ¼, the same as every other outcome. Squaring erases the sign, so measuring now reveals nothing." },
+]);
+document.querySelector("#quiz-measure .quiz-opts").addEventListener("click", () => {
+  if (document.querySelector("#quiz-measure .right")) show("attempt");
+});
+
+Quiz.numeric(document.getElementById("hand"), {
+  fields: [{ label: "00", answer: 0.5 }, { label: "01", answer: 0.5 }, { label: "10", answer: 0.5 }, { label: "11", answer: -0.5 }],
+  success: "Right. H on both qubits gives back the exact state you started with, so the sign is still hidden. You need more than H on both.",
+  retry: "Not yet. Check normalization first: the squares must sum to 1. After H on A you should recognize an entangled state from Lesson 3.",
+  onSolve: () => show("design"),
+});
+
+BatchLab.mount(document.getElementById("lab"), {
+  inputs: marked.map((amps, i) => ({ label: `${["00", "01", "10", "11"][i]}-marked`, amps })),
+  gates: ["H on A", "H on B", "X on A", "X on B", "Z on A", "Z on B", "CNOT"],
+  goals: [
+    { kind: "distinct", text: "Every marked state must give a different outcome, each with certainty." },
+    { kind: "exact", expect: [0, 1, 2, 3], text: "Now the outcome must equal the marked position: 00-marked gives 00, and so on." },
+  ],
+  hint: "Work backward from one input. Find gates that take the 11-marked state to |00⟩, then run that circuit on the other three. For the second goal, compare each outcome with its marked position, bit by bit.",
+  onSolve: () => show("search"),
+});
+
+Quiz.numeric(document.getElementById("dots"), {
+  fields: [{ label: "|0⟩ · |+⟩", answer: Math.SQRT1_2 }, { label: "00-marked · 11-marked", answer: 0 }],
+  success: "Right. |0⟩ and |+⟩ overlap by 1/√2 ≈ 0.707. The two marked states are orthogonal, and so is every other pair of marked states.",
+  retry: "Not yet. Multiply matching entries and add. The marked states give −¼ + ¼ + ¼ − ¼.",
+  onSolve: () => show("why"),
+});
+
+Quiz.choice(document.getElementById("quiz-why"), [
+  { prompt: "No circuit sends |0⟩ to |0⟩ and |+⟩ to |1⟩. Why?",
+    options: ["Gates cannot act on a single qubit", "Measuring |+⟩ would always give outcome one", "Gates keep the dot product at 1/√2", "H would need to be applied twice"], answer: 2,
+    why: "Right. Before, the dot product is 1/√2. After, |0⟩ · |1⟩ would be 0. Gates preserve dot products, so that cannot happen." },
+  { prompt: "Another friend flips every sign except the one at 10, giving (−½, −½, ½, −½). What does your five-gate circuit measure?",
+    options: ["00 every time", "01 every time", "No certain outcome", "10 every time"], answer: 3,
+    why: "Yes. That state is −1 times the 10-marked state. An overall sign changes no probability, so the circuit still reports 10." },
+]);
+</script>
+</body>
+</html>

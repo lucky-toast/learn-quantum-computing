@@ -81,8 +81,20 @@
 </table>
 </section>
 
+<section data-after-lesson="6">
+<h2>Finding a marked sign</h2>
+<p>Marked states: the uniform state (½, ½, ½, ½) with one sign flipped. Measuring one right away gives ¼ for every outcome. H on both qubits leaves the 11-marked state unchanged.</p>
+<table>
+  <tr><th>Circuit</th><th>Result</th></tr>
+  <tr><td>H on A, CNOT, H on A</td><td>Marked position with both bits flipped (shortest: 3 gates)</td></tr>
+  <tr><td>H on A, CNOT, H on A, X on A, X on B</td><td>The marked position itself (shortest: 5 gates)</td></tr>
+</table>
+<h2>Dot product</h2>
+<p>Multiply matching entries and add, for real amplitudes. A dot product of 0 means the states are orthogonal. Gates preserve dot products, so only states that are already orthogonal can be told apart with certainty. Any two marked states are orthogonal. |0⟩ · |+⟩ = 1/√2.</p>
+</section>
+
 <div class="footer">
-  From <a href="../lessons/0002-two-qubits-four-amplitudes.html">Lesson 2</a>, <a href="../lessons/0003-one-gate-four-amplitudes.html">Lesson 3</a>, <a href="../lessons/0004-build-entanglement.html">Lesson 4</a>, and <a href="../lessons/0005-undo-every-gate.html">Lesson 5</a>. Source: <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">Watrous, Quantum information for multiple systems</a>.
+  From <a href="../lessons/0002-two-qubits-four-amplitudes.html">Lesson 2</a>, <a href="../lessons/0003-one-gate-four-amplitudes.html">Lesson 3</a>, <a href="../lessons/0004-build-entanglement.html">Lesson 4</a>, <a href="../lessons/0005-undo-every-gate.html">Lesson 5</a>, and <a href="../lessons/0006-find-the-marked-sign.html">Lesson 6</a>. Source: <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">Watrous, Quantum information for multiple systems</a>.
 </div>
 </main>
 <script src="../assets/reference-filter.js"></script>
