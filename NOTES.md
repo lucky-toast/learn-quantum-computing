@@ -21,6 +21,13 @@
 - Keep chat explanations short. Long breakdowns of optional detail go unread.
 - Enjoys seeing the minimal solution after solving a puzzle. Verify minimality by exhaustive search before claiming it.
 
+## External resources (stated in session 6)
+
+- The learner had not realized "Read next" was meant for them, and has not used any external source yet.
+- Prefers video or audio over reading. Text is fine when nothing better exists.
+- An assigned resource needs its own clearly labeled, prominent section in the lesson, not a footer line. Say what to watch, which part (timestamps), roughly how long it takes, and why.
+- Pair each assigned resource with review questions about that resource specifically. Write them only from content you have verified (slides, transcript or chapter list), never from memory.
+
 ## Where we left off
 
 Session 6 ran as chat only (no browser), so it has no lesson file. Starting from the uniform state with one sign flipped, the learner designed H on A, CNOT, H on A, X on A, X on B, which reads out the marked position with certainty (LR 0010). They then explained why certainty is possible, using dot products and orthogonality (LR 0011). Next: marking a position with a reversible oracle instead of a friend. Teach the complex dot product before phase gates return. Lesson 6 (`lessons/0006-find-the-marked-sign.html`) turns this session into retrieval practice. The learner plans to go through it before the next session, so start by asking how it went.
