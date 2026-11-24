@@ -28,6 +28,7 @@
 - An assigned resource needs its own clearly labeled, prominent section in the lesson, not a footer line. Say what to watch, which part (timestamps), roughly how long it takes, and why.
 - Pair each assigned resource with review questions about that resource specifically. Write them only from content you have verified (slides, transcript or chapter list), never from memory. If the content cannot be checked, skip the questions (the learner said they are optional).
 - Lessons 1–5 had only a footer "Read next" line, which the learner never used. Those lines were removed in session 6 at their request; do not assign catch-up material for them.
+- Network: the "learn-quantum-computing" cloud environment allows YouTube, IBM Quantum Learning, jhwatrous.github.io and arXiv. YouTube blocks automated page fetches, so ground video review questions in the matching Watrous slides.
 - Pattern: a `<section class="assignment">` before the footer (styles in `assets/course.css`), with an Assigned · Watch label, what, which part, why and what to listen for. See Lesson 6.
 
 ## Where we left off

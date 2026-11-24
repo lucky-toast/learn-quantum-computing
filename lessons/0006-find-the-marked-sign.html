@@ -67,14 +67,17 @@
   <h2 id="assignment-title">Inner products, from the source</h2>
   <p class="assignment-what"><a href="https://youtu.be/30U2DTfIrOU">“Quantum Circuits”, Lesson 3 of <em>Understanding Quantum Information and Computation</em></a>, by John Watrous (Qiskit on YouTube).</p>
   <dl>
-    <dt>Which part</dt>
-    <dd>Open the video's chapter list and watch the chapter called <strong>Inner products</strong>. You don't need the rest of the video yet.</dd>
+    <dt>Which parts</dt>
+    <dd>Skip the opening on circuits. Watch the stretch whose slides are titled <strong>Inner products</strong> and <strong>Orthogonality and orthonormality</strong>. Then skip ahead to <strong>Irrelevance of global phases</strong> and <strong>Discriminating non-orthogonal states</strong>. You can skip No-cloning for now.</dd>
     <dt>Why</dt>
-    <dd>Watrous explains today's dot product in standard notation. He calls it an <em>inner product</em>, and his version also handles complex amplitudes, which you will need when S and other phase gates return.</dd>
+    <dd>He proves today's claim: two states can be told apart with certainty exactly when they are orthogonal. He calls the dot product an <em>inner product</em>, and his version also handles complex amplitudes, which you will need when S and other phase gates return.</dd>
     <dt>Listen for</dt>
-    <dd>Where the complex conjugate enters the definition, and how he defines <em>orthogonal</em> and <em>orthonormal</em>.</dd>
+    <dd>How the inner product relates to the angle between two vectors, where the complex conjugate enters the definition, and why a perfect discriminating unitary forces two states to be orthogonal.</dd>
   </dl>
-  <p class="assignment-note">Prefer reading? The <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/quantum-circuits/introduction">written version of the same lesson</a> covers the same material. Review questions for this video will be added once its content can be checked.</p>
+  <p class="assignment-note">Prefer reading? Use <a href="https://jhwatrous.github.io/UQIC.slides.03.pdf">his slides for this video</a>, or the <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/quantum-circuits/introduction">written version of the lesson</a>.</p>
+  <h3>After watching</h3>
+  <p>These questions come from Watrous's slides. Answer them from memory.</p>
+  <div id="quiz-source"></div>
 </section>
 
 <div class="footer">
@@ -145,6 +148,23 @@ Quiz.choice(document.getElementById("quiz-why"), [
   { prompt: "Another friend flips every sign except the one at 10, giving (−½, −½, ½, −½). What does your five-gate circuit measure?",
     options: ["00 every time", "01 every time", "No certain outcome", "10 every time"], answer: 3,
     why: "Yes. That state is −1 times the 10-marked state. An overall sign changes no probability, so the circuit still reports 10." },
+]);
+Quiz.choice(document.getElementById("quiz-source"), [
+  { prompt: "In Watrous's examples with real one-qubit vectors, what does the inner product equal?",
+    options: ["The sine of the angle between them", "The length of the longer vector squared", "The cosine of the angle between them", "The sum of their two lengths, halved"], answer: 2,
+    why: "Right. His examples give cos 105° ≈ −0.2588, and cos 90° = 0 for an orthogonal pair." },
+  { prompt: "Why does Watrous say {|0⟩, |+⟩} is not an orthogonal set?",
+    options: ["Their inner product is 1/√2, not zero", "They are not unit vectors at all", "H turns |0⟩ into |+⟩ every time", "They differ only by a global phase"], answer: 0,
+    why: "Yes. ⟨0|+⟩ = 1/√2, the same number you computed in this lesson." },
+  { prompt: "What does the inner product of a vector with itself give?",
+    options: ["Zero, because it matches itself exactly", "Its conjugate, multiplied by negative one", "One over its Euclidean norm, squared", "The square of its Euclidean norm"], answer: 3,
+    why: "Right. That is why normalized states have inner product 1 with themselves." },
+  { prompt: "How does Watrous show that non-orthogonal states cannot be perfectly discriminated?",
+    options: ["A unitary would have to clone them", "A perfect U forces inner product zero", "Measuring them gives random outcomes always", "Unitaries cannot act on states that overlap"], answer: 1,
+    why: "Yes. Unitaries preserve inner products, so if U sends the two states to orthogonal outputs, the inputs were already orthogonal." },
+  { prompt: "Which condition on a square matrix U does Watrous show is equivalent to U being unitary?",
+    options: ["All of its entries are real", "Its determinant is equal to zero", "Its columns form an orthonormal basis", "Its rows each add up to one"], answer: 2,
+    why: "Right. Check H: its columns (1, 1)/√2 and (1, −1)/√2 are unit vectors with inner product 0." },
 ]);
 </script>
 </body>
