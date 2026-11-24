@@ -1,4 +1,4 @@
-# Quantum Algorithms Resources
+# Quantum Computing Resources
 
 ## Knowledge
 
@@ -7,9 +7,9 @@
 - [Course: _Fundamentals of Quantum Algorithms_ by John Watrous (IBM Quantum Learning)](https://eu-de.quantum.cloud.ibm.com/learning/courses/fundamentals-of-quantum-algorithms)
   Query algorithms, phase estimation, factoring, and search, with Qiskit implementations. Use for: studying design patterns after attempting problems independently.
 - [Video series: _Understanding Quantum Information and Computation_ by John Watrous (Qiskit on YouTube)](https://youtu.be/30U2DTfIrOU)
-  Video version of the Watrous course, one video per lesson. Verified ids: Lesson 1 "Single Systems" `3-c4xJa7Flk`, Lesson 2 "Multiple Systems" `DfZZS8Spe7U`, Lesson 3 `30U2DTfIrOU`. The link is Lesson 3, "Quantum Circuits", which has an "Inner products" chapter. Use for: assigned watching, since the learner prefers video. YouTube blocks automated fetches, so write review questions from the matching slides instead: `https://jhwatrous.github.io/UQIC.slides.NN.pdf` (NN = lesson number), linked from [Watrous's course page](https://jhwatrous.github.io/books-and-courses.html).
+  Video version of the Watrous course, one video per lesson. IBM describes it as modeled on a graduate-level intro course, so teach the notation before assigning a clip. Verified ids: Lesson 1 "Single Systems" `3-c4xJa7Flk`, Lesson 2 "Multiple Systems" `DfZZS8Spe7U`, Lesson 3 `30U2DTfIrOU`, Lesson 4 "Entanglement in Action" `GSsElSQgMbU` (ids 1–4 also listed in the book). The link is Lesson 3, "Quantum Circuits", which has an "Inner products" chapter. Use for: assigned watching, since the learner prefers video. YouTube blocks automated fetches, so write review questions from the matching slides instead: `https://jhwatrous.github.io/UQIC.slides.NN.pdf` (NN = lesson number), linked from [Watrous's course page](https://jhwatrous.github.io/books-and-courses.html).
 - [Book: _Understanding Quantum Information and Computation_ by John Watrous](https://arxiv.org/pdf/2507.11536)
-  Open PDF of the written course. Use for: offline reading and precise statements.
+  Open PDF of the written course, in four units: I Basics of Quantum Information (L1–4), II Fundamentals of Quantum Algorithms (L5–8), III General Formulation (L9–12), IV Foundations of Quantum Error Correction (L13–16). Use for: offline reading, precise statements, and the map for the course path in NOTES.md.
 - [Essay: _Quantum Computing for the Very Curious_ by Andy Matuschak and Michael Nielsen](https://quantum.country/qcvc)
   Mechanics-first introduction with built-in spaced repetition. Use for: a second explanation and long-term retention of the basics.
 - [Article: _Complex number_ (Wikipedia)](https://en.wikipedia.org/wiki/Complex_number)
@@ -27,3 +27,6 @@
 ## Gaps
 
 - A curated set of small, unfamiliar design puzzles with solutions. Lessons will need to supply these.
+- A gentler video introduction to sit beside Watrous. Candidates found but not yet vetted (check content, quality and whether the network allows them):
+  - [Michael Nielsen's "Quantum computing for the determined"](https://michaelnielsen.org/blog/quantum-computing-for-the-determined/): 22 short videos (5–15 minutes, one concept each) from 2011, covering the basic model, entanglement, superdense coding and teleportation. Nielsen says the series is unfinished.
+  - [Simeon Ball, "A Course in Quantum Computation" (UPC)](https://web.mat.upc.edu/simeon.michael.ball/quantumlectures.html): 19 recorded lectures from a bachelor's course that follows Nielsen and Chuang.

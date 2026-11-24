@@ -1,59 +1,84 @@
 # Teaching Notes
 
-- Keep the mission's design skill central. Pose the goal first and let the learner search for the circuit before showing a solution.
-- Refresh linear algebra in context with worked examples, then have the learner do the arithmetic.
-- Tooling path: browser lessons first, Python and Qiskit once the ideas are solid.
-- Hold back famous algorithm names until the learner has attempted the underlying idea.
-- Glossary: started in session 6. Add terms only after the learner demonstrates understanding.
+Working notes for `/teach`. What the learner *knows* lives in `learning-records/` and `GLOSSARY.md`. This file holds how to teach, the course path, and anything in flight.
 
-## Learner preferences (from prior study summary)
+## Scope
 
-- Introduce one unfamiliar concept at a time and explain every new symbol immediately.
-- Notation: introduce each new concept in ordinary linear algebra first, as an on-ramp. Then explicitly teach the field's standard notation for it (kets, bras, ⟨ψ|φ⟩, †, ⊗, sums over basis states) and use that notation from then on. The learner wants to become fluent in it, so never skip or gloss over notation, especially when it matters. Do not *assume* notation that hasn't been taught. (Clarified by the learner in session 6.)
-- Prefer deriving results from first principles. Give hints before answers.
-- Distinguish mathematical definitions, physical postulates, and experimental evidence.
-- Correct misunderstandings explicitly, including tutor mistakes.
+See `MISSION.md`. Long term: all of quantum computing. For now: the basics, at the level of an intro college course. Watrous's course (`RESOURCES.md`) is the map for that scope. Its Units I and II are the core, and Unit IV's opening lesson closes the course.
+
+## How to teach
+
+- Pose the goal first and let the learner search for the circuit before showing a solution. Designing from a goal is the skill the mission is built on.
+- Introduce one unfamiliar concept at a time, and explain every new symbol right away.
+- Derive results from first principles. Give hints before answers.
+- Distinguish mathematical definitions, physical postulates and experimental evidence.
+- Give the physical meaning of the math.
 - Check conceptual understanding, not just arithmetic.
-- Wants the physical meaning of the math.
-- Asset logic gets a Node test first (`node --test tests/*.test.js`), following the learner's TDD preference.
-- Every lesson includes the in-page reference panel (`assets/reference-drawer.js`), so the learner never has to switch tabs. Tag answers in reference sheets with `data-after-lesson` so the panel cannot spoil the current lesson.
-- State plainly what each exercise gives and what it asks for, including any limits. Avoid arbitrary limits that can block a valid solution.
+- Correct misunderstandings explicitly, including tutor mistakes.
+- Refresh linear algebra in context with worked examples, then have the learner do the arithmetic.
 - Keep chat explanations short. Long breakdowns of optional detail go unread.
-- Enjoys seeing the minimal solution after solving a puzzle. Verify minimality by exhaustive search before claiming it.
+- State plainly what each exercise gives and what it asks for, including any limits. Avoid arbitrary limits that can block a valid solution.
+- After the learner solves a puzzle, show the minimal solution. Verify minimality by exhaustive search before claiming it.
 
-## External resources (stated in session 6)
+## Notation
 
-- The learner had not realized "Read next" was meant for them, and has not used any external source yet.
+- Introduce each concept in ordinary linear algebra first, as an on-ramp. Then teach the field's standard notation for it and use that notation from then on. The learner wants fluency, so never skip or gloss over notation.
+- Never *assume* notation that hasn't been taught.
+- "Dot product" and "inner product" are both fine. Both always mean the conjugated version, a*c + b*d. Never present the plain, unconjugated sum as the whole story.
+
+## Named algorithms and results
+
+Names are fine. Good practice: have the learner derive or design the idea first, then explain what it is and give its name.
+
+## Spaced review
+
+Required in every lesson. Baseline: each lesson opens with a short warm-up of retrieval questions drawn from lessons at least two back, mixed across topics, before any new material. (Mechanism beyond this baseline: pending the learner's choice.)
+
+## External resources
+
 - Prefers video or audio over reading. Text is fine when nothing better exists.
-- An assigned resource needs its own clearly labeled, prominent section in the lesson, not a footer line. Say what to watch, which part (timestamps), roughly how long it takes, and why.
-- Pair each assigned resource with review questions about that resource specifically. Write them only from content you have verified (slides, transcript or chapter list), never from memory. If the content cannot be checked, skip the questions (the learner said they are optional).
-- Lessons 1–5 had only a footer "Read next" line, which the learner never used. Those lines were removed in session 6 at their request; do not assign catch-up material for them.
-- Network: the "learn-quantum-computing" cloud environment allows YouTube, IBM Quantum Learning, jhwatrous.github.io and arXiv. YouTube blocks automated page fetches, so ground video review questions in the matching Watrous slides.
-- Session 6 feedback: the assigned Watrous clip felt heavy, with general theorems, sum notation, bra-kets and daggers beyond what lessons had covered. Assign the narrowest segment possible, say explicitly which derivations to skip and which takeaways to keep, and warn about unfamiliar notation up front. Review questions should test the takeaways, not the proofs.
-- Pattern: a `<section class="assignment">` before the footer (styles in `assets/course.css`), with an Assigned · Watch label, what, which part, why and what to listen for. See Lesson 6.
+- An assigned resource gets its own prominent `<section class="assignment">` before the footer (styles in `assets/course.css`, example in Lesson 6). It says what to watch, which part, roughly how long it takes, why, and what to listen for.
+- Assign the narrowest segment possible. Say which derivations to skip and which takeaways to keep, and warn about unfamiliar notation up front.
+- Pair each assigned resource with review questions about that resource. Write them only from content you have verified (slides, transcript or chapter list), never from memory. If it cannot be checked, skip the questions (the learner said they are optional). Questions test the takeaways, not the proofs.
+- Watrous is pitched at a graduate intro course. The learner found it heavy partly because they had no notation yet. Keep using it, with notation taught first, and look for gentler videos too (see Gaps in `RESOURCES.md`).
+- Network: the "learn-quantum-computing" cloud environment allows YouTube, IBM Quantum Learning, jhwatrous.github.io and arXiv. YouTube blocks automated page fetches, so ground video questions in the matching Watrous slides.
+- Lessons 1–5 have no assigned resource, at the learner's request. Do not assign catch-up material for them.
 
-## Where we left off
+## Lesson building
 
-Session 6 ran as chat only (no browser), so it has no lesson file. Starting from the uniform state with one sign flipped, the learner designed H on A, CNOT, H on A, X on A, X on B, which reads out the marked position with certainty (LR 0010). They then explained why certainty is possible, using dot products and orthogonality (LR 0011). Next: marking a position with a reversible oracle instead of a friend. The learner now understands why the inner product conjugates the first vector (S broke the plain dot product). From here on say "inner product", never "dot product". Bras were mentioned in chat but not practiced. Do not count them, or anything from the Watrous video, as learned.
+- Asset logic gets a Node test first (`node --test tests/*.test.js`), following the learner's TDD preference.
+- Every lesson includes the in-page reference panel (`assets/reference-drawer.js`). It opens on the last sheet in `data-sheets`, so list the newest sheet last. Include `reference/phase-rotation.html`, which the learner asked for and likes.
+- In reference sheets, tag answers with `data-after-lesson` so the panel cannot spoil the current lesson.
 
-**Lesson 7 is built (`lessons/0007-speak-the-notation.html`), not yet done by the learner.** It is notation catch-up and review with no new ideas, plus a new `reference/notation.html` sheet (quiz answers tagged `data-after-lesson="7"`). Assigned: narrow slide ranges from Watrous videos 1 (Dirac notation, unitary definition) and 2 (ordering, tensor products of vectors, U ⊗ 1), with review questions from the verified slides. When the learner reports back, check which notation landed before counting it as learned. The original plan: teach each item fresh, in ordinary linear algebra first, then in notation, then practice:
-- Kets: |name⟩ as a column (already in the one-qubit reference), and as a sum over basis states, e.g. |+⟩ = (|0⟩ + |1⟩)/√2
-- Two-qubit kets: |ab⟩ ordering, and writing the marked states as ½(|00⟩ + |01⟩ + |10⟩ − |11⟩)
-- Complex conjugate, bras ⟨ψ| as conjugate transpose, the inner product ⟨ψ|φ⟩, and why it is conjugated (S|1⟩ breaks the plain dot product)
-- † for matrices, and unitary meaning U†U = I (check H and S)
-- ⊗: |00⟩ = |0⟩⊗|0⟩, and H⊗H for H on both qubits
-- Global phase: why −|ψ⟩ is the same state
-Interleave review of the pair rule, CNOT, undoing gates and the marked-sign circuit, rewritten in the new notation. The unfinished chat question "compute ⟨ψ|ψ⟩ for S|+⟩ = (1/√2, i/√2)" belongs in this lesson. Lesson 6 (`lessons/0006-find-the-marked-sign.html`) turns this session into retrieval practice. The learner completed Lesson 6, the assigned clip and its review questions. They found the clip's derivations heavy and were told the takeaways to keep (inner product as dot product, gates preserve it, orthogonal iff perfectly distinguishable, global phase undetectable).
+## Current status
 
-## Side notes
+- Last completed: Lesson 6 and its assigned clip.
+- Built, not yet done: Lesson 7 (`lessons/0007-speak-the-notation.html`), notation review with no new ideas. When the learner reports back, check which notation landed. Then write learning records, and add terms to the glossary (bras, ⟨ψ|φ⟩, †, ⊗ and global phase are not yet in it).
 
-- `reference/phase-rotation.html`: S as a quarter turn in the complex plane, with animation. The learner asked for it after Lesson 5 and was excited by the connection. Add it to the reference panel in future lessons, and use it when phase returns.
+## Course path
 
-## Planned path
+Ordered by Watrous's units, adjusted so the learner's in-progress search thread lands before phase estimation. ✓ = done. Notation is taught where its concept first appears.
 
-Two-qubit states, one-qubit gates on two-qubit states, CNOT, the diffusion matrix, oracles as reversible computation, a full Grover iteration, then an original design problem.
+1. **Single and multiple systems** (Watrous L1–L2)
+   - ✓ One qubit: states, measurement, H, X, Z, S and phase (Lessons 1, 5)
+   - ✓ Two qubits: ordering, gates on one qubit, CNOT, entanglement, undoing gates (Lessons 2–5)
+   - ✓ Telling states apart: inner product and orthogonality (Lesson 6)
+   - Notation review: kets, bras, ⟨ψ|φ⟩, †, ⊗, global phase (Lesson 7, built)
+   - Measuring one qubit of two, and what the other qubit is left in
+   - Probabilistic (classical) states versus quantum states
+2. **Quantum circuits** (Watrous L3)
+   - Three qubits, Toffoli, reversible classical computation
+   - No-cloning
+   - First Qiskit lesson (proposed): predict a circuit by hand, then check it in a simulator
+3. **Entanglement in action** (Watrous L4): teleportation, superdense coding, the CHSH game
+4. **Query algorithms** (Watrous L5)
+   - Oracles and phase kickback. Notation: |x⟩|y⟩ ↦ |x⟩|y ⊕ f(x)⟩ and (−1)^f(x)
+   - Deutsch, Deutsch–Jozsa, Bernstein–Vazirani, Simon
+5. **Search** (Watrous L8)
+   - Diffusion. Notation: outer products |ψ⟩⟨ψ|, and 2|u⟩⟨u| − I
+   - A full Grover iteration, how many iterations, and an original design problem
+6. **Algorithmic foundations** (Watrous L6): cost of circuits, and simulating classical computation
+7. **Phase estimation and factoring** (Watrous L7): quantum Fourier transform, phase estimation, Shor
+8. **Noise and error correction, first look** (Watrous L13): the repetition code and correcting a bit flip
 
-Notation milestones, woven into that path rather than taught as a separate unit. Each one is introduced as soon as the concept it names has landed:
-- Lesson 7 covers kets as sums, bras, ⟨ψ|φ⟩, †, ⊗ and global phase (built, see above)
-- Outer products |ψ⟩⟨ψ|, needed to write the diffusion matrix as 2|u⟩⟨u| − I
-- Oracle notation |x⟩|y⟩ ↦ |x⟩|y ⊕ f(x)⟩ and (−1)^f(x)
+Beyond the intro scope, for later: density matrices, channels, general measurements (Watrous Unit III), and the stabilizer formalism and fault tolerance (Unit IV).
