@@ -36,7 +36,7 @@
 
 Session 6 ran as chat only (no browser), so it has no lesson file. Starting from the uniform state with one sign flipped, the learner designed H on A, CNOT, H on A, X on A, X on B, which reads out the marked position with certainty (LR 0010). They then explained why certainty is possible, using dot products and orthogonality (LR 0011). Next: marking a position with a reversible oracle instead of a friend. The learner now understands why the inner product conjugates the first vector (S broke the plain dot product). From here on say "inner product", never "dot product". Bras were mentioned in chat but not practiced. Do not count them, or anything from the Watrous video, as learned.
 
-**Lesson 7 is decided: notation catch-up and review, with no new ideas.** Teach each item fresh, in ordinary linear algebra first, then in notation, then practice:
+**Lesson 7 is built (`lessons/0007-speak-the-notation.html`), not yet done by the learner.** It is notation catch-up and review with no new ideas, plus a new `reference/notation.html` sheet (quiz answers tagged `data-after-lesson="7"`). Assigned: narrow slide ranges from Watrous videos 1 (Dirac notation, unitary definition) and 2 (ordering, tensor products of vectors, U ⊗ 1), with review questions from the verified slides. When the learner reports back, check which notation landed before counting it as learned. The original plan: teach each item fresh, in ordinary linear algebra first, then in notation, then practice:
 - Kets: |name⟩ as a column (already in the one-qubit reference), and as a sum over basis states, e.g. |+⟩ = (|0⟩ + |1⟩)/√2
 - Two-qubit kets: |ab⟩ ordering, and writing the marked states as ½(|00⟩ + |01⟩ + |10⟩ − |11⟩)
 - Complex conjugate, bras ⟨ψ| as conjugate transpose, the inner product ⟨ψ|φ⟩, and why it is conjugated (S|1⟩ breaks the plain dot product)
@@ -54,6 +54,6 @@ Interleave review of the pair rule, CNOT, undoing gates and the marked-sign circ
 Two-qubit states, one-qubit gates on two-qubit states, CNOT, the diffusion matrix, oracles as reversible computation, a full Grover iteration, then an original design problem.
 
 Notation milestones, woven into that path rather than taught as a separate unit. Each one is introduced as soon as the concept it names has landed:
-- Lesson 7 covers kets as sums, bras, ⟨ψ|φ⟩, †, ⊗ and global phase (see above)
+- Lesson 7 covers kets as sums, bras, ⟨ψ|φ⟩, †, ⊗ and global phase (built, see above)
 - Outer products |ψ⟩⟨ψ|, needed to write the diffusion matrix as 2|u⟩⟨u| − I
 - Oracle notation |x⟩|y⟩ ↦ |x⟩|y ⊕ f(x)⟩ and (−1)^f(x)

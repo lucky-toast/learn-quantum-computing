@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speak the Notation</title>
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+<div class="kicker">Lesson 7</div>
+<h1>Speak the notation</h1>
+<p class="lede">No new ideas today. You will rewrite everything you already know in the notation the field uses, so papers and videos stop looking like a foreign language.</p>
+
+<div class="goal">
+  <strong>Your goal.</strong> Learn six pieces of notation: kets as sums, two-qubit kets, complex conjugates, bras and the inner product ⟨ψ|φ⟩, the dagger †, and the tensor product ⊗. Each one starts from vectors and matrices you already use, then shows the notation, then asks you to use it. Earlier ideas come back as review along the way. <strong>Then watch</strong> two short assigned clips, listed at the end.
+</div>
+
+<h2>From memory</h2>
+<p>Plain vectors first. Try these without opening the Reference panel.</p>
+<div id="quiz-warmup"></div>
+
+<h2>1. Kets are sums</h2>
+<p>You already read |0⟩ as the column (1, 0) and |1⟩ as (0, 1). Any one-qubit state (a, b) splits into those two pieces:</p>
+<div class="math">
+  <span class="mx"><span>a</span><span>b</span></span> =
+  a <span class="mx"><span>1</span><span>0</span></span> +
+  b <span class="mx"><span>0</span><span>1</span></span> =
+  a|0⟩ + b|1⟩
+</div>
+<p><strong>The field writes states this way, as a sum of kets.</strong> The number in front of each ket is its amplitude. For example, |+⟩ = (1/√2)|0⟩ + (1/√2)|1⟩, which is often shortened to (|0⟩ + |1⟩)/√2. |0⟩ and |1⟩ are called the <em>standard basis</em>.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">[1]</a></sup> |ψ⟩ (“psi”) and |φ⟩ (“phi”) are the usual names for an arbitrary state.</p>
+<p><strong>Given:</strong> |ψ⟩ = (3/5)|0⟩ − (4/5)|1⟩. <strong>Asked:</strong> write it as a column. Enter decimals.</p>
+<div class="panel" id="ket-column"></div>
+<div id="quiz-kets"></div>
+
+<section id="two" hidden>
+  <h2>2. Two-qubit kets</h2>
+  <p>The same split works with four entries. Each position gets a ket named by its label, A's digit on the left:</p>
+  <div class="math">(a, b, c, d) = a|00⟩ + b|01⟩ + c|10⟩ + d|11⟩</div>
+  <p>The order 00, 01, 10, 11 is dictionary order, with the left digit most significant. Your uniform state is ½(|00⟩ + |01⟩ + |10⟩ + |11⟩), and the 11-marked state is <strong>½(|00⟩ + |01⟩ + |10⟩ − |11⟩)</strong>. The ½ in front multiplies every term.</p>
+  <p><strong>Gates act term by term.</strong> To apply a gate to a sum, apply it to each ket and add the results. CNOT is easiest in this form: it flips B when A is 1, so CNOT|10⟩ = |11⟩, CNOT|11⟩ = |10⟩, and CNOT leaves |00⟩ and |01⟩ alone. That is the same swap of entries 10 and 11 you used in Lesson 4.</p>
+  <p><strong>Given:</strong> (1/√2)(|01⟩ − |10⟩). <strong>Asked:</strong> enter its four amplitudes in the order 00, 01, 10, 11.</p>
+  <div class="panel" id="two-column"></div>
+  <div id="quiz-two"></div>
+</section>
+
+<section id="conj" hidden>
+  <h2>3. Complex conjugate</h2>
+  <p>The <strong>complex conjugate</strong> of z = a + bi flips the sign of the imaginary part: z* = a − bi. Physics writes the star z*. Math books often write a bar, z̄. Both mean the same thing.<sup><a href="https://en.wikipedia.org/wiki/Complex_number">[2]</a></sup></p>
+  <p>Why you need it: multiply a number by its own conjugate and you get its squared length, always a real number and never negative.</p>
+  <div class="math">z* z = (a − bi)(a + bi) = a² + b² = |z|²</div>
+  <p>Check with i: i* = −i, and (−i)(i) = −i² = 1 = |i|². Real numbers are their own conjugates.</p>
+  <p><strong>Given:</strong> z = 2 − 3i. <strong>Asked:</strong> the real and imaginary parts of z*, then z* z.</p>
+  <div class="panel" id="conj-calc"></div>
+</section>
+
+<section id="bras" hidden>
+  <h2>4. Bras and the inner product ⟨ψ|φ⟩</h2>
+  <p>A <strong>bra</strong> ⟨ψ| is the ket |ψ⟩ turned into a row, with every entry conjugated. Turning a column into a row and conjugating is called the <em>conjugate transpose</em>.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">[1]</a></sup></p>
+  <div class="math">
+    |ψ⟩ = <span class="mx"><span>a</span><span>b</span></span>
+    &nbsp; ⟹ &nbsp; ⟨ψ| = (a* &nbsp; b*) = a*⟨0| + b*⟨1|
+  </div>
+  <p>A row times a column is a single number. <strong>⟨ψ|φ⟩ is the bra ⟨ψ| times the ket |φ⟩</strong>, with the two middle bars merged into one. This is the <em>inner product</em>, written ⟨ψ|φ⟩ from now on:</p>
+  <div class="math">⟨ψ|φ⟩ = (a* &nbsp; b*) <span class="mx"><span>c</span><span>d</span></span> = a*c + b*d</div>
+  <p>For real amplitudes the conjugates change nothing, so this is your Lesson 6 dot product. For complex amplitudes the conjugate is what keeps ⟨ψ|ψ⟩ = |a|² + |b|², the sum of probabilities. Without it, S|1⟩ = i|1⟩ = (0, i) would give i · i = −1 for a state whose probabilities add to 1.</p>
+  <p>The standard basis kets make ⟨0|ψ⟩ = a and ⟨1|ψ⟩ = b. So the bra ⟨k| picks out an amplitude, and <strong>the probability of outcome k is |⟨k|ψ⟩|²</strong>. You will see that form of the measurement rule everywhere.</p>
+  <p><strong>Given:</strong> |+i⟩ = S|+⟩ = (1/√2)|0⟩ + (i/√2)|1⟩, and |+⟩ = (1/√2)|0⟩ + (1/√2)|1⟩. <strong>Asked:</strong> ⟨+i|+i⟩, then the real and imaginary parts of ⟨+|+i⟩. Remember to conjugate the bra only.</p>
+  <div class="panel" id="bra-calc"></div>
+  <div id="quiz-bras"></div>
+</section>
+
+<section id="dagger" hidden>
+  <h2>5. The dagger † and “unitary”</h2>
+  <p>The conjugate transpose works on matrices too, and is written with a dagger: <strong>M† means swap rows with columns, then conjugate every entry.</strong> The bra is just the dagger of a ket: ⟨ψ| = |ψ⟩†.</p>
+  <div class="math">
+    S = <span class="mx two"><span>1</span><span>0</span><span>0</span><span>i</span></span>
+    &nbsp; S† = <span class="mx two"><span>1</span><span>0</span><span>0</span><span>−i</span></span>
+    &nbsp; H† = H
+  </div>
+  <p>H has only real entries and is symmetric across its diagonal, so H† = H.</p>
+  <p><span class="tag">Definition</span> A matrix U is <strong>unitary</strong> when U†U = I, where I is the identity matrix.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">[1]</a></sup> In Lesson 5 you met the inverse U⁻¹. This definition says U⁻¹ = U†: <strong>to undo a gate, apply its dagger.</strong></p>
+  <p><strong>Given:</strong> S and S† above. <strong>Asked:</strong> multiply S†S and enter the four entries.</p>
+  <div class="panel" id="dagger-calc"></div>
+  <div id="quiz-dagger"></div>
+  <p><span class="tag">See how</span> This is the one-line reason gates preserve inner products, which the Lesson 6 clip derived. The bra of U|φ⟩ is ⟨φ|U†, so ⟨Uφ|Uψ⟩ = ⟨φ|U†U|ψ⟩ = ⟨φ|I|ψ⟩ = ⟨φ|ψ⟩. You do not need to reproduce this, only to read it.</p>
+</section>
+
+<section id="tensor" hidden>
+  <h2>6. The tensor product ⊗</h2>
+  <p>The Reference panel already shows |01⟩ = |0⟩ ⊗ |1⟩. Here is the general rule for two one-qubit states. Each entry of A's state multiplies all of B's state, in dictionary order:</p>
+  <div class="math">
+    <span class="mx"><span>a</span><span>b</span></span> ⊗
+    <span class="mx"><span>c</span><span>d</span></span> =
+    <span class="mx"><span>ac</span><span>ad</span><span>bc</span><span>bd</span></span>
+    <span class="mx"><span>← 00</span><span>← 01</span><span>← 10</span><span>← 11</span></span>
+  </div>
+  <p>In kets, |a⟩ ⊗ |b⟩ = |a⟩|b⟩ = |ab⟩. Papers often drop the ⊗ symbol and write two kets side by side.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">[3]</a></sup></p>
+  <p><strong>Gates combine the same way.</strong> Acting with U on A and V on B at the same time is the matrix U ⊗ V, and it acts piece by piece: (U ⊗ V)(|φ⟩ ⊗ |ψ⟩) = U|φ⟩ ⊗ V|ψ⟩. Doing nothing is I. So your gate names translate like this:</p>
+  <table>
+    <tr><th>In this course</th><th>Standard notation</th></tr>
+    <tr><td>H on A</td><td>H ⊗ I</td></tr>
+    <tr><td>H on B</td><td>I ⊗ H</td></tr>
+    <tr><td>H on both</td><td>H ⊗ H</td></tr>
+  </table>
+  <p><strong>Given:</strong> |+⟩ = (1/√2, 1/√2) and |−⟩ = (1/√2, −1/√2). <strong>Asked:</strong> enter the four amplitudes of |+⟩ ⊗ |−⟩.</p>
+  <div class="panel" id="tensor-calc"></div>
+  <div id="quiz-tensor"></div>
+</section>
+
+<section id="phase" hidden>
+  <h2>Global phase, in notation</h2>
+  <p>Multiplying a whole state by a number c of length 1, such as −1, i or any e<sup>iθ</sup>, is a <em>global phase</em>. It changes no probability, because |⟨k|cψ⟩|² = |c|² |⟨k|ψ⟩|² = |⟨k|ψ⟩|². So |ψ⟩ and c|ψ⟩ count as the same state.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/quantum-circuits/limitations-on-quantum-information">[4]</a></sup></p>
+  <p>A <em>relative phase</em> is different. It multiplies only some terms. |+⟩ = (|0⟩ + |1⟩)/√2 and |−⟩ = (|0⟩ − |1⟩)/√2 differ by a sign on one term, and H tells them apart perfectly.</p>
+  <div id="quiz-phase"></div>
+
+  <h2>Your circuit, rewritten</h2>
+  <p><strong>A circuit reads left to right, but the matrix product reads right to left.</strong> The first gate sits next to the state, because it acts first. So “H on A, then CNOT, then H on A” applied to |ψ⟩ is:</p>
+  <div class="math">(H ⊗ I) · CNOT · (H ⊗ I) |ψ⟩</div>
+  <div id="quiz-circuit"></div>
+</section>
+
+<section class="assignment" aria-labelledby="assignment-title">
+  <div class="assignment-kicker">Assigned · Watch</div>
+  <h2 id="assignment-title">Notation, from the source</h2>
+  <p class="assignment-what">Two short stretches of John Watrous's video series <em>Understanding Quantum Information and Computation</em> (Qiskit on YouTube). This is the notation you just practiced, used at full speed.</p>
+
+  <h3>Clip 1: <a href="https://youtu.be/3-c4xJa7Flk">“Single Systems”, Lesson 1</a></h3>
+  <dl>
+    <dt>Which parts</dt>
+    <dd>Watch only the slides titled <strong>Dirac notation (first part)</strong>, <strong>(second part)</strong> and <strong>(third part)</strong>, then the <strong>Unitary operations</strong> definition slides. They are spread through the video, between sections on probabilities, so skip ahead between them. In the second part you can skip the slides on |a⟩⟨b| (a column times a row). That is a preview of a later lesson.</dd>
+    <dt>Why</dt>
+    <dd>He defines kets, bras and ⟨a|b⟩ the same way you just did, and states U†U = I in his own words.</dd>
+    <dt>Notation warnings</dt>
+    <dd>Σ (capital sigma) on his slides names a set of classical states, such as {0, 1}. It is not a sum. He writes the identity matrix as a bold <strong>1</strong> instead of I, and ∥v∥ for the length of a vector.</dd>
+  </dl>
+
+  <h3>Clip 2: <a href="https://youtu.be/DfZZS8Spe7U">“Multiple Systems”, Lesson 2</a></h3>
+  <dl>
+    <dt>Which parts</dt>
+    <dd>Watch the <strong>Classical states</strong> convention slide on ordering, then <strong>Tensor products of vectors</strong>. Skip everything about probabilistic states and stochastic matrices. Near the end, watch the <strong>Unitary operations</strong> slides on doing U on one system and nothing on the other.</dd>
+    <dt>Why</dt>
+    <dd>He explains why the order is 00, 01, 10, 11, and works a ⊗ example by hand.</dd>
+    <dt>Notation warnings</dt>
+    <dd>His definition uses a sum symbol ∑ with subscripts like α<sub>a</sub>. Skip that line and follow his worked example instead, which uses the same rule as section 6. He sometimes writes |a, b⟩ for |ab⟩.</dd>
+  </dl>
+  <p class="assignment-note">Prefer reading? Use his slides for <a href="https://jhwatrous.github.io/UQIC.slides.01.pdf">Lesson 1</a> and <a href="https://jhwatrous.github.io/UQIC.slides.02.pdf">Lesson 2</a>, searching for the same slide titles.</p>
+  <h3>After watching</h3>
+  <p>These questions come from Watrous's slides. Answer them from memory.</p>
+  <div id="quiz-source"></div>
+</section>
+
+<div class="footer">
+  <p><strong>Need a reminder?</strong> Use the Reference button. The new Notation sheet collects today's symbols. <strong>Previous:</strong> <a href="0006-find-the-marked-sign.html">Lesson 6</a>.</p>
+  <p><strong>Stuck or curious?</strong> Ask me anything in the chat. I'm your teacher here, and "why is it written this way?" is always a good question.</p>
+</div>
+</main>
+<script src="../assets/quiz.js"></script>
+<script src="../assets/reference-drawer.js" data-lesson="7" data-sheets="one-qubit:One qubit,two-qubits:Two qubits,phase-rotation:Phase,notation:Notation"></script>
+<script>
+const show = (id) => { document.getElementById(id).hidden = false; };
+const r = Math.SQRT1_2;
+const $ = (id) => document.getElementById(id);
+
+Quiz.choice($("quiz-warmup"), [
+  { prompt: "Apply H on A to (1, 0, 0, 0). What state do you get?",
+    options: ["(1/√2, 1/√2, 0, 0)", "(1/√2, 0, 1/√2, 0)", "(1/√2, 0, 0, 1/√2)", "(½, ½, ½, ½)"], answer: 1,
+    why: "Right. A's pairs are (00, 10) and (01, 11). The pair (1, 0) becomes (1/√2, 1/√2) across 00 and 10." },
+  { prompt: "Apply CNOT to (1/√2, 0, 1/√2, 0). What state do you get?",
+    options: ["(1/√2, 0, 0, 1/√2)", "(0, 1/√2, 1/√2, 0)", "(1/√2, 1/√2, 0, 0)", "(1/√2, 0, 1/√2, 0)"], answer: 0,
+    why: "Yes. CNOT swaps the entries for 10 and 11. That built your first entangled state." },
+  { prompt: "Your three-gate circuit H on A, CNOT, H on A sends the 11-marked state to which outcome?",
+    options: ["11 every time", "No certain outcome", "00 every time", "10 every time"], answer: 2,
+    why: "Right. It reports the marked position with both bits flipped. X on A and X on B fix that." },
+]);
+
+Quiz.numeric($("ket-column"), {
+  fields: [{ label: "Top (for 0)", answer: 0.6 }, { label: "Bottom (for 1)", answer: -0.8 }],
+  success: "Right. (0.6, −0.8). The amplitude in front of each ket becomes its entry. Check: 0.36 + 0.64 = 1.",
+  retry: "Not yet. Read off the number in front of |0⟩, then the number in front of |1⟩, keeping the sign.",
+  onSolve: () => show("two"),
+});
+
+Quiz.choice($("quiz-kets"), [
+  { prompt: "Which is |−⟩ written as a sum of kets?",
+    options: ["(1/√2)|0⟩ + (1/√2)|1⟩", "(1/√2)|1⟩ − (1/√2)|0⟩", "(1/√2)|0⟩ − (1/√2)|1⟩", "|0⟩ − |1⟩"], answer: 2,
+    why: "Right. |−⟩ = (1/√2, −1/√2). The last option is missing the 1/√2, so it is not normalized." },
+  { prompt: "In this notation, H|0⟩ = (|0⟩ + |1⟩)/√2. What is H|1⟩?",
+    options: ["(|0⟩ − |1⟩)/√2", "(|1⟩ − |0⟩)/√2", "(|0⟩ + |1⟩)/√2", "|0⟩"], answer: 0,
+    why: "Yes. H|1⟩ = |−⟩. These two lines are the pair rule in ket form: the top becomes the sum, the bottom the difference." },
+]);
+
+Quiz.numeric($("two-column"), {
+  fields: [{ label: "00", answer: 0 }, { label: "01", answer: r }, { label: "10", answer: -r }, { label: "11", answer: 0 }],
+  success: "Right. (0, 1/√2, −1/√2, 0). A missing ket means its amplitude is 0. This is the entangled state from your Lesson 5 table.",
+  retry: "Not yet. Only |01⟩ and |10⟩ appear, so 00 and 11 are 0. Multiply the 1/√2 into each term, keeping the minus sign.",
+  onSolve: () => show("conj"),
+});
+
+Quiz.choice($("quiz-two"), [
+  { prompt: "Which sum is the 01-marked state, (½, −½, ½, ½)?",
+    options: ["½(|00⟩ + |01⟩ − |10⟩ + |11⟩)", "½(|00⟩ − |01⟩ + |10⟩ + |11⟩)", "½(−|00⟩ + |01⟩ + |10⟩ + |11⟩)", "−½(|00⟩ + |01⟩ + |10⟩ + |11⟩)"], answer: 1,
+    why: "Right. The minus sign sits on the |01⟩ term. The last option flips every sign, which is a global phase, not a mark." },
+  { prompt: "Apply CNOT term by term to (1/√2)(|00⟩ + |10⟩). What do you get?",
+    options: ["(1/√2)(|00⟩ + |10⟩)", "(1/√2)(|01⟩ + |11⟩)", "(1/√2)(|00⟩ + |11⟩)", "(1/√2)(|01⟩ + |10⟩)"], answer: 2,
+    why: "Yes. |00⟩ is unchanged and |10⟩ becomes |11⟩. Same answer as the warm-up, written the way papers write it." },
+]);
+
+Quiz.numeric($("conj-calc"), {
+  fields: [{ label: "Real part of z*", answer: 2 }, { label: "Imaginary part of z*", answer: 3 }, { label: "z* z", answer: 13 }],
+  success: "Right. z* = 2 + 3i, and z* z = 4 + 9 = 13. Real, positive, and equal to |z|².",
+  retry: "Not yet. Flip only the sign of the imaginary part. Then z* z = a² + b², with no i left over.",
+  onSolve: () => show("bras"),
+});
+
+Quiz.numeric($("bra-calc"), {
+  fields: [{ label: "⟨+i|+i⟩", answer: 1 }, { label: "⟨+|+i⟩ real part", answer: 0.5 }, { label: "⟨+|+i⟩ imaginary part", answer: 0.5 }],
+  success: "Right. ⟨+i|+i⟩ = ½ + (−i/√2)(i/√2) = ½ + ½ = 1, a normalized state. ⟨+|+i⟩ = ½ + ½i, because |+⟩ is real and needs no conjugating.",
+  retry: "Not yet. In ⟨+i|+i⟩ the bra's bottom entry is −i/√2, and (−i)(i) = 1. In ⟨+|+i⟩ the bra is real, so multiply matching entries as they are.",
+  onSolve: () => show("dagger"),
+});
+
+Quiz.choice($("quiz-bras"), [
+  { prompt: "You found ⟨+|+i⟩ = ½ + ½i. What is ⟨+i|+⟩, with the order swapped?",
+    options: ["½ + ½i", "½ − ½i", "1", "0"], answer: 1,
+    why: "Right. Now |+i⟩ supplies the bra, so its i is conjugated. In general ⟨φ|ψ⟩ = ⟨ψ|φ⟩*, so order matters in the inner product." },
+  { prompt: "For |ψ⟩ = (3/5)|0⟩ − (4/5)|1⟩, what is the probability of outcome 1, |⟨1|ψ⟩|²?",
+    options: ["−4/5", "4/5", "9/25", "16/25"], answer: 3,
+    why: "Yes. ⟨1|ψ⟩ = −4/5, the amplitude, and its square is 16/25. The bra ⟨1| picks the amplitude out." },
+  { prompt: "In Lesson 6 you found the 00-marked and 11-marked states orthogonal. How is that written now?",
+    options: ["⟨00|11⟩ = 0", "⟨m₀₀|m₁₁⟩ = 0", "|m₀₀⟩ ⊗ |m₁₁⟩ = 0", "⟨m₀₀|m₁₁⟩ = 1"], answer: 1,
+    why: "Right, naming the marked states |m₀₀⟩ and |m₁₁⟩. Orthogonal means inner product 0. ⟨00|11⟩ = 0 is also true, but it is about the basis kets, not the marked states." },
+]);
+
+Quiz.numeric($("dagger-calc"), {
+  fields: [{ label: "Top left", answer: 1 }, { label: "Top right", answer: 0 }, { label: "Bottom left", answer: 0 }, { label: "Bottom right", answer: 1 }],
+  success: "Right. S†S = I. The bottom right is (−i)(i) = 1. S is unitary, and S† undoes S.",
+  retry: "Not yet. Both matrices are diagonal, so multiply matching diagonal entries. The bottom right is (−i)(i).",
+  onSolve: () => show("tensor"),
+});
+
+Quiz.choice($("quiz-dagger"), [
+  { prompt: "In Lesson 5, S³ undid S. Which matrix is S³?",
+    options: ["S", "S†", "Z", "H"], answer: 1,
+    why: "Yes. S³ multiplies the bottom entry by i³ = −i, which is exactly S†. Same fact, two names." },
+  { prompt: "Why do X, Z and H each undo themselves?",
+    options: ["Each is its own dagger", "Each has only real entries", "Each has a 1 on its diagonal", "Each one acts on one qubit"], answer: 0,
+    why: "Right. X† = X, Z† = Z and H† = H, so U⁻¹ = U† = U. Real entries alone are not enough: the matrix must also be symmetric." },
+]);
+
+Quiz.numeric($("tensor-calc"), {
+  fields: [{ label: "00", answer: 0.5 }, { label: "01", answer: -0.5 }, { label: "10", answer: 0.5 }, { label: "11", answer: -0.5 }],
+  success: "Right. (½, −½, ½, −½). Each entry of |+⟩ multiplies (1/√2, −1/√2).",
+  retry: "Not yet. Use (ac, ad, bc, bd) with a = b = 1/√2, c = 1/√2 and d = −1/√2.",
+  onSolve: () => show("phase"),
+});
+
+Quiz.choice($("quiz-tensor"), [
+  { prompt: "Which is “Z on B” in standard notation?",
+    options: ["Z ⊗ I", "Z ⊗ Z", "I ⊗ Z", "Z|1⟩"], answer: 2,
+    why: "Right. A's slot comes first, so doing nothing on A and Z on B is I ⊗ Z." },
+  { prompt: "What is (H ⊗ H)|00⟩?",
+    options: ["|+⟩ ⊗ |+⟩, the uniform state", "|+⟩ ⊗ |0⟩", "|00⟩, since H undoes itself", "(1/√2)(|00⟩ + |11⟩)"], answer: 0,
+    why: "Yes. Piece by piece: H|0⟩ ⊗ H|0⟩ = |+⟩ ⊗ |+⟩ = ½(|00⟩ + |01⟩ + |10⟩ + |11⟩)." },
+  { prompt: "Why can (1/√2)(|00⟩ + |11⟩) not be written as |φ⟩ ⊗ |ψ⟩?",
+    options: ["It is not normalized", "It has a minus sign", "Its terms are orthogonal", "ad = 0 forces ac or bd to 0"], answer: 3,
+    why: "Right. A product gives (ac, ad, bc, bd). The 01 entry ad = 0 means a = 0 or d = 0, which would zero out ac or bd too. That is what entangled means." },
+]);
+
+Quiz.choice($("quiz-phase"), [
+  { prompt: "Which pair describes the same physical state?",
+    options: ["|+⟩ and |−⟩", "|0⟩ and |1⟩", "(|0⟩ − |1⟩)/√2 and (|1⟩ − |0⟩)/√2", "|+⟩ and |+i⟩"], answer: 2,
+    why: "Yes. The second is −1 times the first, a global phase. The other pairs differ by a relative phase or are orthogonal." },
+  { prompt: "Is i|+⟩ the same state as |+⟩?",
+    options: ["No, its amplitudes are complex", "Yes, i is a global phase", "No, it is the state |+i⟩", "Only after measuring"], answer: 1,
+    why: "Right. i multiplies every term and has length 1. |+i⟩ is different: only its |1⟩ term carries the i." },
+]);
+
+Quiz.choice($("quiz-circuit"), [
+  { prompt: "Which expression is your five-gate readout: H on A, CNOT, H on A, X on A, X on B?",
+    options: ["(H ⊗ I) · CNOT · (H ⊗ I) · (X ⊗ X)", "(X ⊗ X) · (H ⊗ I) · CNOT · (H ⊗ I)", "(H ⊗ X) · CNOT · (H ⊗ X)", "(X ⊗ I) · (I ⊗ X) · CNOT · (H ⊗ H)"], answer: 1,
+    why: "Right. The X gates act last, so they sit on the far left. X on A then X on B is (I ⊗ X)(X ⊗ I) = X ⊗ X." },
+  { prompt: "What does (H ⊗ I) · CNOT · (H ⊗ I) do to ½(|00⟩ + |01⟩ + |10⟩ − |11⟩)?",
+    options: ["Gives |11⟩", "Gives ½(|00⟩ + |01⟩ + |10⟩ − |11⟩)", "Gives (1/√2)(|00⟩ + |11⟩)", "Gives |00⟩"], answer: 3,
+    why: "Yes. The 11-marked state goes to |00⟩, both bits flipped. You already knew this. Now you can read it in a paper." },
+]);
+
+Quiz.choice($("quiz-source"), [
+  { prompt: "In Watrous's Dirac notation, what is the ket |a⟩ for a classical state a?",
+    options: ["A row with 1 in a's entry", "A column with 1 in a's entry, 0 elsewhere", "A column with every entry equal to a", "The probability of measuring a"], answer: 1,
+    why: "Right. He calls these standard basis vectors, and every vector is a unique combination of them." },
+  { prompt: "His example has |ψ⟩ = ((1 + 2i)/3)|0⟩ − (2/3)|1⟩. What is ⟨ψ|?",
+    options: ["((1 + 2i)/3)⟨0| − (2/3)⟨1|", "((1 − 2i)/3)⟨0| + (2/3)⟨1|", "((1 − 2i)/3)⟨0| − (2/3)⟨1|", "((2i − 1)/3)⟨0| − (2/3)⟨1|"], answer: 2,
+    why: "Yes. Conjugate each amplitude. The real −2/3 stays as it is." },
+  { prompt: "For classical states a and b, what is ⟨a|b⟩?",
+    options: ["1 if a = b, otherwise 0", "Always 1", "a times b", "The matrix |a⟩⟨b|"], answer: 0,
+    why: "Right. Standard basis vectors are orthonormal. |a⟩⟨b| is the column-times-row product he shows next, which is a matrix." },
+  { prompt: "How does Watrous define a unitary matrix U?",
+    options: ["Its entries are all real", "U² = 1", "U†U = 1 = UU†", "Its determinant is 1"], answer: 2,
+    why: "Yes. His bold 1 is your I. He adds that this is the same as U⁻¹ = U†." },
+  { prompt: "In his tensor example, |φ⟩ = ¼|0⟩ + ¾|1⟩ and |ψ⟩ = ⅔|0⟩ + ⅓|1⟩. What is the coefficient of |10⟩ in |φ⟩ ⊗ |ψ⟩?",
+    options: ["1/6", "1/12", "1/4", "1/2"], answer: 3,
+    why: "Right. ¾ · ⅔ = ½. Those vectors are probabilities, not amplitudes, but ⊗ works the same way." },
+  { prompt: "In Lesson 2, how does he represent doing U on system X and nothing on system Y?",
+    options: ["U ⊗ 1", "1 ⊗ U", "U · U", "U + 1"], answer: 0,
+    why: "Yes. X is on the left, so U goes in the left slot. That is your H ⊗ I for “H on A”." },
+]);
+</script>
+</body>
+</html>

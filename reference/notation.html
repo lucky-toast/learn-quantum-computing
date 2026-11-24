@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notation Reference</title>
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+<div class="kicker">Reference</div>
+<h1>Notation</h1>
+<p>Each row gives the symbol, what it means in plain vectors and matrices, and an example.</p>
+
+<h2>States</h2>
+<table>
+  <tr><th>Symbol</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>|ψ⟩, |φ⟩</td><td>Ket: a state as a column. ψ is “psi”, φ is “phi”</td><td>|+⟩ = (1/√2, 1/√2)</td></tr>
+  <tr><td>a|0⟩ + b|1⟩</td><td>The column (a, b), written as a sum of basis kets</td><td>|−⟩ = (|0⟩ − |1⟩)/√2</td></tr>
+  <tr><td>|ab⟩</td><td>Two-qubit basis ket. A's digit on the left. Order 00, 01, 10, 11</td><td>(a, b, c, d) = a|00⟩ + b|01⟩ + c|10⟩ + d|11⟩</td></tr>
+  <tr><td>z*</td><td>Complex conjugate: flip the sign of the imaginary part. Also written z̄</td><td>z* z = |z|²<span data-after-lesson="7">, &nbsp; (2 − 3i)* = 2 + 3i</span></td></tr>
+  <tr><td>⟨ψ|</td><td>Bra: the ket as a row, every entry conjugated. ⟨ψ| = |ψ⟩†</td><td>|+i⟩ = (1/√2, i/√2) ⟹ ⟨+i| = (1/√2 &nbsp; −i/√2)</td></tr>
+  <tr><td>⟨ψ|φ⟩</td><td>Inner product: bra times ket, a*c + b*d. 0 means orthogonal</td><td>⟨ψ|ψ⟩ = 1<span data-after-lesson="7">, &nbsp; ⟨+|+i⟩ = ½ + ½i</span></td></tr>
+  <tr><td>|⟨k|ψ⟩|²</td><td>Probability of outcome k. ⟨k|ψ⟩ is the amplitude of k</td><td>⟨0|ψ⟩ = a for |ψ⟩ = a|0⟩ + b|1⟩</td></tr>
+</table>
+<p data-after-lesson="7">Swapping the order conjugates the result: ⟨φ|ψ⟩ = ⟨ψ|φ⟩*.</p>
+
+<h2>Gates</h2>
+<table>
+  <tr><th>Symbol</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>M†</td><td>Dagger: swap rows with columns, then conjugate every entry</td><td>S† = diag(1, −i)<span data-after-lesson="7"> = S³</span>, &nbsp; H† = H</td></tr>
+  <tr><td>U†U = I</td><td>U is unitary. Equivalently U⁻¹ = U†, so the dagger undoes the gate</td><td><span data-after-lesson="7">S†S = I</span></td></tr>
+  <tr><td>|φ⟩ ⊗ |ψ⟩</td><td>Tensor product: (a, b) ⊗ (c, d) = (ac, ad, bc, bd). Also written |φ⟩|ψ⟩</td><td>|0⟩ ⊗ |1⟩ = |01⟩</td></tr>
+  <tr><td>U ⊗ V</td><td>U on A and V on B at once. I means do nothing</td><td>H on A = H ⊗ I<span data-after-lesson="7">, &nbsp; Z on B = I ⊗ Z</span></td></tr>
+</table>
+<p><strong>Circuits read left to right, but products read right to left.</strong> “H on A, then CNOT, then H on A” is (H ⊗ I) · CNOT · (H ⊗ I)|ψ⟩.</p>
+
+<h2>Phase</h2>
+<p><strong>Global phase:</strong> c|ψ⟩ with |c| = 1, such as −|ψ⟩ or i|ψ⟩, is the same state as |ψ⟩. <strong>Relative phase:</strong> a factor on only some terms, such as |+⟩ versus |−⟩, changes the state.</p>
+
+<div class="footer">
+  From <a href="../lessons/0007-speak-the-notation.html">Lesson 7</a>. Sources: <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/single-systems/quantum-information">Watrous, Quantum information</a> and <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">Quantum information for multiple systems</a>.
+</div>
+</main>
+<script src="../assets/reference-filter.js"></script>
+</body>
+</html>
