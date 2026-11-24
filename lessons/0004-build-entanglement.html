@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Entanglement</title>
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+<div class="kicker">Lesson 4</div>
+<h1>Build entanglement</h1>
+<p class="lede">Design the circuit that creates the state you proved could not be split.</p>
+
+<div class="goal">
+  <strong>Your goal.</strong> Start from |00⟩ and build (1/√2, 0, 0, 1/√2), then adapt your design to two related targets.
+</div>
+
+<h2>Warm-up</h2>
+<div id="quiz-warmup"></div>
+
+<h2>Why one-qubit gates are not enough</h2>
+<p>You can now apply a gate to one qubit of any state using the <a href="0003-one-gate-four-amplitudes.html">pair rule</a>. But |00⟩ is a product state, |0⟩ ⊗ |0⟩, and on a product state the pair rule has a simple effect: it changes only that qubit's factor.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">[1]</a></sup> For example, X on A gives |1⟩ ⊗ |0⟩ = |10⟩. However many of these you apply, you still have one factor per qubit, so starting from |00⟩ you can never reach an entangled state. You need a gate that makes one qubit's outcome depend on the other's.</p>
+
+<h2>A gate that acts on both</h2>
+<p><span class="tag">Definition</span> The <em>controlled-NOT</em> gate, or CNOT, flips B when A is 1 and does nothing when A is 0.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">[1]</a></sup> A is the <em>control</em> (●) and B is the <em>target</em> (⊕). In the 00, 01, 10, 11 ordering, that means it swaps the last two amplitudes:</p>
+<div class="math">
+  <span class="mx two" style="grid-template-columns:repeat(4,1fr)"><span>1</span><span>0</span><span>0</span><span>0</span><span>0</span><span>1</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>1</span><span>0</span><span>0</span><span>1</span><span>0</span></span>
+  <span class="mx"><span>p</span><span>q</span><span>s</span><span>t</span></span> =
+  <span class="mx"><span>p</span><span>q</span><span>t</span><span>s</span></span>
+</div>
+<p>Try it on (0.6, 0, 0, 0.8):</p>
+<div class="panel" id="hand"></div>
+
+<section id="design" hidden>
+  <h2>Design it</h2>
+  <p>Try each target on paper first. Gates apply left to right, and the input is always |00⟩.</p>
+  <div class="panel" id="lab"></div>
+</section>
+
+<section id="why" hidden>
+  <h2>Name the move</h2>
+  <div id="quiz-why"></div>
+  <p>Here is a design habit worth keeping: <strong>start from the target and undo the last gate.</strong> Applying CNOT twice returns the original state, so you can ask what state must exist just before it. That turns "find a circuit" into a smaller problem.</p>
+</section>
+
+<div class="footer">
+  <p><strong>Read next:</strong> <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">Quantum information for multiple systems</a>, from John Watrous's IBM course, especially its sections on unitary operations and Bell states. It calls CNOT by another common name, CX.</p>
+  <p><strong>Need a reminder?</strong> Use the Reference button to open your notes beside this lesson. This lesson's answers stay hidden. <strong>Previous:</strong> <a href="0003-one-gate-four-amplitudes.html">Lesson 3</a>. <strong>Next:</strong> <a href="0005-undo-every-gate.html">Lesson 5</a>.</p>
+  <p><strong>Stuck or curious?</strong> Ask me anything in the chat. I'm your teacher here, and "what is physically happening?" is always a good question.</p>
+</div>
+</main>
+<script src="../assets/quiz.js"></script>
+<script src="../assets/qubit-lab.js"></script>
+<script src="../assets/product-lab.js"></script>
+<script src="../assets/two-qubit-lab.js"></script>
+<script src="../assets/reference-drawer.js" data-lesson="4" data-sheets="one-qubit:One qubit,two-qubits:Two qubits"></script>
+<script>
+const root = Math.SQRT1_2;
+Quiz.choice(document.getElementById("quiz-warmup"), [
+  { prompt: "Which pair of qubit states produces (½, ½, ½, ½)?",
+    options: ["|−⟩ ⊗ |+⟩", "|0⟩ ⊗ |+⟩", "|+⟩ ⊗ |+⟩", "|+⟩ ⊗ |−⟩"], answer: 2,
+    why: "Right. Every entry is (1/√2)(1/√2) = ½, with no minus signs." },
+]);
+Quiz.numeric(document.getElementById("hand"), {
+  fields: [{ label: "00", answer: 0.6 }, { label: "01", answer: 0 }, { label: "10", answer: 0.8 }, { label: "11", answer: 0 }],
+  success: "Right. The 0.8 on outcome 11 moved to 10, because B flipped wherever A was 1.",
+  retry: "Not yet. Keep the first two entries and swap the last two.",
+  onSolve: () => { document.getElementById("design").hidden = false; },
+});
+TwoQubitLab.mount(document.getElementById("lab"), {
+  gates: ["H on A", "H on B", "X on A", "X on B", "Z on A", "Z on B", "CNOT"],
+  maxGates: 5,
+  targets: [
+    { amps: [root, 0, 0, root] },
+    { amps: [0, root, root, 0] },
+    { amps: [root, 0, 0, -root] },
+  ],
+  hint: "Work backward. If CNOT is your last gate, swap the target's last two entries. That is the state you need just before CNOT.",
+  onSolve: () => { document.getElementById("why").hidden = false; },
+});
+Quiz.choice(document.getElementById("quiz-why"), [
+  { prompt: "Why did the first target need H on A before CNOT?",
+    options: ["H copies A's value onto the B qubit", "H gives CNOT two branches to act on", "H measures A so that CNOT can react", "H puts both qubits in state 1 first"], answer: 1,
+    why: "Yes. With A in superposition, CNOT leaves the A = 0 part alone and flips B in the A = 1 part, tying the outcomes together." },
+]);
+</script>
+</body>
+</html>

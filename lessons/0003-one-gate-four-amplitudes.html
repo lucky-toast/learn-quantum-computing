@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One Gate, Four Amplitudes</title>
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+<div class="kicker">Lesson 3</div>
+<h1>One gate, four amplitudes</h1>
+<p class="lede">How to act on one qubit when all you have is a list of four numbers.</p>
+
+<div class="goal">
+  <strong>Your goal.</strong> Apply a gate to just one qubit of a four-amplitude state, including an entangled state that cannot be split into two qubit states.
+</div>
+
+<h2>A and B are the two qubits</h2>
+<p>A and B are simply names for the two physical qubits. In a result, the left digit is A and the right digit is B, so 10 means A gave 1 and B gave 0.</p>
+<div id="quiz-names"></div>
+
+<h2>The pair rule</h2>
+<p>"H on A" means apply H to qubit A and do nothing to B. Even when A has no state of its own, the list still tells us A's amplitudes <em>for each fixed value of B</em>. So we work in pairs:</p>
+<div class="panel">
+  <p style="margin-top:0"><strong>Gate on A:</strong> pair the results where B matches: <strong>(00, 10)</strong> and <strong>(01, 11)</strong>.</p>
+  <p><strong>Gate on B:</strong> pair the results where A matches: <strong>(00, 01)</strong> and <strong>(10, 11)</strong>.</p>
+  <p style="margin-bottom:0">Apply the ordinary one-qubit gate to each pair, then put the results back in the same positions.</p>
+</div>
+<p><span class="tag">Definition</span> This is what the standard notation H ⊗ I means, where I is the "do nothing" gate on the other qubit.<sup><a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">[1]</a></sup> The pair rule is that same matrix multiplication, written without the 4×4 matrix.</p>
+<table>
+  <tr><th>Gate</th><th>Turns a pair (x, y) into</th></tr>
+  <tr><td>X</td><td>(y, x)</td></tr>
+  <tr><td>Z</td><td>(x, −y)</td></tr>
+  <tr><td>H</td><td>((x + y)/√2, (x − y)/√2)</td></tr>
+</table>
+<div id="quiz-pairs"></div>
+
+<h2>Worked example, on an entangled state</h2>
+<p>Apply H on A to (1/√2, 0, 0, 1/√2). B-matching pairs are (00, 10) and (01, 11):</p>
+<div class="math">(00, 10): (1/√2, 0) → (½, ½)</div>
+<div class="math">(01, 11): (0, 1/√2) → (½, −½)</div>
+<p>Returning each value to its position gives:</p>
+<div class="math">
+  <span class="mx"><span>1/√2</span><span>0</span><span>0</span><span>1/√2</span></span> →
+  <span class="mx"><span>½</span><span>½</span><span>½</span><span>−½</span></span>
+  <span class="mx"><span>← 00</span><span>← 01</span><span>← 10</span><span>← 11</span></span>
+</div>
+<p>We never needed a separate vector for A.</p>
+
+<h2>Your turn</h2>
+<p><strong>First:</strong> apply H on A to |00⟩ = (1, 0, 0, 0). Enter 1/√2 as 0.71.</p>
+<div class="panel" id="hand-one"></div>
+
+<section id="second" hidden>
+  <p><strong>Now an entangled state:</strong> apply H on <em>B</em> to (1/√2, 0, 0, 1/√2). Watch which pairs you use.</p>
+  <div class="panel" id="hand-two"></div>
+</section>
+
+<section id="design" hidden>
+  <h2>Work out the gate</h2>
+  <p>Now reverse it. Compare Before and After on paper, decide which pairs changed, and then choose the gate.</p>
+  <div class="panel" id="lab"></div>
+</section>
+
+<section id="why" hidden>
+  <h2>Check the idea</h2>
+  <div id="quiz-why"></div>
+  <p>The state of an entangled pair cannot be split, <strong>but an operation on one qubit still has a precise meaning</strong>. You are ready for a gate that acts on both qubits at once.</p>
+</section>
+
+<div class="footer">
+  <p><strong>Read next:</strong> <a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information">Quantum information for multiple systems</a>, from John Watrous's IBM course. Its section on unitary operations is the primary source for this lesson.</p>
+  <p><strong>Keep:</strong> <a href="../reference/two-qubits.html">Two-qubit reference sheet</a>, which contains answers. <strong>Previous:</strong> <a href="0002-two-qubits-four-amplitudes.html">Lesson 2</a>. <strong>Next:</strong> <a href="0004-build-entanglement.html">Lesson 4: Build entanglement</a>.</p>
+  <p><strong>Stuck or curious?</strong> Ask me anything in the chat. If something seems to be skipped, say so. I'm your teacher here, and that is useful feedback.</p>
+</div>
+</main>
+<script src="../assets/quiz.js"></script>
+<script src="../assets/qubit-lab.js"></script>
+<script src="../assets/product-lab.js"></script>
+<script src="../assets/two-qubit-lab.js"></script>
+<script src="../assets/pair-lab.js"></script>
+<script>
+const root = Math.SQRT1_2;
+const show = (id) => () => { document.getElementById(id).hidden = false; };
+Quiz.choice(document.getElementById("quiz-names"), [
+  { prompt: "In the result 01, what did qubit B give?",
+    options: ["B gave 0", "B gave 1"], answer: 1,
+    why: "Right. B is the right digit, so A gave 0 and B gave 1." },
+]);
+const pairOptions = ["00 with 11, 01 with 10", "00 with 01, 10 with 11", "00 with 10, 01 with 11"];
+Quiz.choice(document.getElementById("quiz-pairs"), [
+  { prompt: "For a gate on A, which results are paired?", options: pairOptions, answer: 2,
+    why: "Right. Within each pair, B stays the same and only A differs." },
+  { prompt: "For a gate on B, which results are paired?", options: pairOptions, answer: 1,
+    why: "Right. Within each pair, A stays the same and only B differs." },
+]);
+Quiz.numeric(document.getElementById("hand-one"), {
+  fields: [{ label: "00", answer: root }, { label: "01", answer: 0 }, { label: "10", answer: root }, { label: "11", answer: 0 }],
+  success: "Right. (00, 10) = (1, 0) becomes (1/√2, 1/√2), and (01, 11) = (0, 0) stays zero. This matches |+⟩ ⊗ |0⟩.",
+  retry: "Not yet. Use the pairs (00, 10) = (1, 0) and (01, 11) = (0, 0), then apply H to each.",
+  onSolve: show("second"),
+});
+Quiz.numeric(document.getElementById("hand-two"), {
+  fields: [{ label: "00", answer: 0.5 }, { label: "01", answer: 0.5 }, { label: "10", answer: 0.5 }, { label: "11", answer: -0.5 }],
+  success: "Right. (00, 01) = (1/√2, 0) becomes (½, ½), and (10, 11) = (0, 1/√2) becomes (½, −½).",
+  retry: "Not yet. For a gate on B, use (00, 01) = (1/√2, 0) and (10, 11) = (0, 1/√2). Note that (1/√2)/√2 = ½.",
+  onSolve: show("design"),
+});
+PairLab.mount(document.getElementById("lab"), {
+  gates: ["X on A", "X on B", "Z on A", "Z on B", "H on A", "H on B"],
+  puzzles: [
+    { from: [0.6, 0, 0.8, 0], to: [0, 0.6, 0, 0.8] },
+    { from: [0.5, 0.5, -0.5, -0.5], to: [0, 0, root, root] },
+    { from: [root, 0, 0, root], to: [root, 0, 0, -root] },
+  ],
+  hint: "Try the pairs for A, then the pairs for B. Ask whether each pair was swapped, had its second entry negated, or became a sum and difference.",
+  onSolve: show("why"),
+});
+Quiz.choice(document.getElementById("quiz-why"), [
+  { prompt: "Why can H act on A when A and B are entangled?",
+    options: ["It splits the list into one pair of states", "It first removes the links between A and B", "It acts on A's amplitudes for each B value", "It reads B first and then alters A's value"], answer: 2,
+    why: "Yes. The gate needs only the pairs of amplitudes for each fixed value of B, not a separate state for A." },
+]);
+</script>
+</body>
+</html>
