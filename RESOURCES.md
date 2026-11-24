@@ -6,6 +6,8 @@
   Rigorous, free foundation in states, measurements, and unitary operations. Use for: definitions and notation in every early lesson.
 - [Course: _Fundamentals of Quantum Algorithms_ by John Watrous (IBM Quantum Learning)](https://eu-de.quantum.cloud.ibm.com/learning/courses/fundamentals-of-quantum-algorithms)
   Query algorithms, phase estimation, factoring, and search, with Qiskit implementations. Use for: studying design patterns after attempting problems independently.
+- [Video series: _Understanding Quantum Information and Computation_ by John Watrous (Qiskit on YouTube)](https://youtu.be/30U2DTfIrOU)
+  Video version of the Watrous course, one video per lesson. The link is Lesson 3, "Quantum Circuits", which has an "Inner products" chapter. Use for: assigned watching, since the learner prefers video. Not yet checked from this environment (YouTube is blocked), so verify chapters before writing review questions.
 - [Book: _Understanding Quantum Information and Computation_ by John Watrous](https://arxiv.org/pdf/2507.11536)
   Open PDF of the written course. Use for: offline reading and precise statements.
 - [Essay: _Quantum Computing for the Very Curious_ by Andy Matuschak and Michael Nielsen](https://quantum.country/qcvc)
