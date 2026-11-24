@@ -9,7 +9,7 @@
 ## Learner preferences (from prior study summary)
 
 - Introduce one unfamiliar concept at a time and explain every new symbol immediately.
-- Translate quantum notation into ordinary linear algebra. Do not assume Dirac notation or tensor products.
+- Notation: introduce each new concept in ordinary linear algebra first, as an on-ramp. Then explicitly teach the field's standard notation for it (kets, bras, ⟨ψ|φ⟩, †, ⊗, sums over basis states) and use that notation from then on. The learner wants to become fluent in it, so never skip or gloss over notation, especially when it matters. Do not *assume* notation that hasn't been taught. (Clarified by the learner in session 6.)
 - Prefer deriving results from first principles. Give hints before answers.
 - Distinguish mathematical definitions, physical postulates, and experimental evidence.
 - Correct misunderstandings explicitly, including tutor mistakes.
@@ -34,7 +34,7 @@
 
 ## Where we left off
 
-Session 6 ran as chat only (no browser), so it has no lesson file. Starting from the uniform state with one sign flipped, the learner designed H on A, CNOT, H on A, X on A, X on B, which reads out the marked position with certainty (LR 0010). They then explained why certainty is possible, using dot products and orthogonality (LR 0011). Next: marking a position with a reversible oracle instead of a friend. Teach the complex dot product before phase gates return. Lesson 6 (`lessons/0006-find-the-marked-sign.html`) turns this session into retrieval practice. The learner completed Lesson 6, the assigned clip and its review questions. They found the clip's derivations heavy and were told the takeaways to keep (inner product as dot product, gates preserve it, orthogonal iff perfectly distinguishable, global phase undetectable).
+Session 6 ran as chat only (no browser), so it has no lesson file. Starting from the uniform state with one sign flipped, the learner designed H on A, CNOT, H on A, X on A, X on B, which reads out the marked position with certainty (LR 0010). They then explained why certainty is possible, using dot products and orthogonality (LR 0011). Next: marking a position with a reversible oracle instead of a friend. The learner now understands why the inner product conjugates the first vector (S broke the plain dot product). From here on say "inner product", never "dot product". Next notation step: write it as ⟨ψ|φ⟩, with a bra as the conjugate transpose of a ket, and U† as conjugate transpose. Lesson 6 (`lessons/0006-find-the-marked-sign.html`) turns this session into retrieval practice. The learner completed Lesson 6, the assigned clip and its review questions. They found the clip's derivations heavy and were told the takeaways to keep (inner product as dot product, gates preserve it, orthogonal iff perfectly distinguishable, global phase undetectable).
 
 ## Side notes
 
@@ -43,3 +43,10 @@ Session 6 ran as chat only (no browser), so it has no lesson file. Starting from
 ## Planned path
 
 Two-qubit states, one-qubit gates on two-qubit states, CNOT, the diffusion matrix, oracles as reversible computation, a full Grover iteration, then an original design problem.
+
+Notation milestones, woven into that path rather than taught as a separate unit. Each one is introduced as soon as the concept it names has landed:
+- Bras and ⟨ψ|φ⟩ for the inner product, and † for conjugate transpose (next)
+- Kets as sums over basis states, e.g. ½(|00⟩ + |01⟩ + |10⟩ − |11⟩), instead of amplitude lists
+- ⊗ for combining qubits, H⊗H for H on both, and why |00⟩ = |0⟩⊗|0⟩
+- Outer products |ψ⟩⟨ψ|, needed to write the diffusion matrix as 2|u⟩⟨u| − I
+- Oracle notation |x⟩|y⟩ ↦ |x⟩|y ⊕ f(x)⟩ and (−1)^f(x)
